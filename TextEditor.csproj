@@ -42,6 +42,9 @@
     <Reference Include="DropShadow">
       <HintPath>V:\Libraries\Design\DropShadow.dll</HintPath>
     </Reference>
+    <Reference Include="FastColoredTextBox">
+      <HintPath>V:\Libraries\Design\FastColoredTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.TextEditor">
       <HintPath>V:\Libraries\Design\ICSharpCode.TextEditor.dll</HintPath>
     </Reference>
@@ -59,6 +62,12 @@
     </Compile>
     <Compile Include="EditorSelectionWindow.Designer.cs">
       <DependentUpon>EditorSelectionWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Editors\CodeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\CodeEditor.Designer.cs">
+      <DependentUpon>CodeEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="Editors\TextEditor.cs">
       <SubType>Form</SubType>
@@ -82,6 +91,9 @@
     </Compile>
     <EmbeddedResource Include="EditorSelectionWindow.resx">
       <DependentUpon>EditorSelectionWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\CodeEditor.resx">
+      <DependentUpon>CodeEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TextEditor.resx">
       <DependentUpon>TextEditor.cs</DependentUpon>
@@ -127,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="electron_1.ico" />
+    <None Include="Resources\icons8_code.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

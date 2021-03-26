@@ -49,6 +49,7 @@ namespace TextEditor.Editors
 		private StreamReader fileReader;
 		private StreamWriter fileWriter;
 
+		// file menu
 		private void openFile_Click(object sender, EventArgs e)
 		{
 			// create a disposable using statement for opening files
@@ -222,6 +223,7 @@ namespace TextEditor.Editors
 			Invalidate();
 		}
 
+		// edit menu
 		private void undoAction_Click(object sender, EventArgs e)
 		{
 			advancedTextEditor.Undo();
@@ -231,16 +233,17 @@ namespace TextEditor.Editors
 			advancedTextEditor.Redo();
 		}
 
+		// format menu -> font
 		private void editorFontSize_Click(object sender, EventArgs e)
 		{
 			new FontSizeEditor(null, advancedTextEditor).ShowDialog();
 		}
-
 		private void editorFontFamily_Click(object sender, EventArgs e)
 		{
 			new FontNameEditor(null, advancedTextEditor).ShowDialog();
 		}
 
+		// format menu -> advanced editor
 		private void editorHRuler_Click(object sender, EventArgs e)
 		{
 			advancedTextEditor.ShowHRuler = editorHRuler.Checked;

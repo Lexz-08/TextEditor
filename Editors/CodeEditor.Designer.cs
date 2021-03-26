@@ -1,7 +1,7 @@
 ﻿
 namespace TextEditor.Editors
 {
-	partial class TextEditor
+	partial class CodeEditor
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -29,9 +29,12 @@ namespace TextEditor.Editors
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextEditor));
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeEditor));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.formatMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.openFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
 			this.saveFile = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,19 +43,20 @@ namespace TextEditor.Editors
 			this.newFile = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
 			this.viewFile = new System.Windows.Forms.ToolStripMenuItem();
-			this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
+			this.cutText = new System.Windows.Forms.ToolStripMenuItem();
+			this.copyText = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+			this.pasteText = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
 			this.undoAction = new System.Windows.Forms.ToolStripMenuItem();
 			this.redoAction = new System.Windows.Forms.ToolStripMenuItem();
-			this.formatMenu = new System.Windows.Forms.ToolStripMenuItem();
 			this.editorFont = new System.Windows.Forms.ToolStripMenuItem();
 			this.editorFontSize = new System.Windows.Forms.ToolStripMenuItem();
 			this.editorFontFamily = new System.Windows.Forms.ToolStripMenuItem();
-			this.advancedEditorMenu = new System.Windows.Forms.ToolStripMenuItem();
-			this.editorHRuler = new System.Windows.Forms.ToolStripMenuItem();
-			this.editorVisibleSpacesTabs = new System.Windows.Forms.ToolStripMenuItem();
-			this.editorShowCurrentLine = new System.Windows.Forms.ToolStripMenuItem();
-			this.advancedTextEditor = new ICSharpCode.TextEditor.TextEditorControl();
+			this.editorWordWrap = new System.Windows.Forms.ToolStripMenuItem();
+			this.advancedEditor = new FastColoredTextBoxNS.FastColoredTextBox();
 			this.menuStrip1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.advancedEditor)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -83,12 +87,34 @@ namespace TextEditor.Editors
 			this.fileMenu.Size = new System.Drawing.Size(37, 20);
 			this.fileMenu.Text = "File";
 			// 
+			// editMenu
+			// 
+			this.editMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutText,
+            this.copyText,
+            this.toolStripMenuItem4,
+            this.pasteText,
+            this.toolStripMenuItem5,
+            this.undoAction,
+            this.redoAction});
+			this.editMenu.Name = "editMenu";
+			this.editMenu.Size = new System.Drawing.Size(39, 20);
+			this.editMenu.Text = "Edit";
+			// 
+			// formatMenu
+			// 
+			this.formatMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editorFont,
+            this.editorWordWrap});
+			this.formatMenu.Name = "formatMenu";
+			this.formatMenu.Size = new System.Drawing.Size(57, 20);
+			this.formatMenu.Text = "Format";
+			// 
 			// openFile
 			// 
 			this.openFile.Name = "openFile";
 			this.openFile.Size = new System.Drawing.Size(200, 22);
 			this.openFile.Text = "Open";
-			this.openFile.Click += new System.EventHandler(this.openFile_Click);
 			// 
 			// toolStripMenuItem1
 			// 
@@ -100,14 +126,12 @@ namespace TextEditor.Editors
 			this.saveFile.Name = "saveFile";
 			this.saveFile.Size = new System.Drawing.Size(200, 22);
 			this.saveFile.Text = "Save";
-			this.saveFile.Click += new System.EventHandler(this.saveFile_Click);
 			// 
 			// saveFileAs
 			// 
 			this.saveFileAs.Name = "saveFileAs";
 			this.saveFileAs.Size = new System.Drawing.Size(200, 22);
 			this.saveFileAs.Text = "Save As";
-			this.saveFileAs.Click += new System.EventHandler(this.saveFileAs_Click);
 			// 
 			// toolStripMenuItem2
 			// 
@@ -119,7 +143,6 @@ namespace TextEditor.Editors
 			this.newFile.Name = "newFile";
 			this.newFile.Size = new System.Drawing.Size(200, 22);
 			this.newFile.Text = "New";
-			this.newFile.Click += new System.EventHandler(this.newFile_Click);
 			// 
 			// toolStripMenuItem3
 			// 
@@ -131,39 +154,46 @@ namespace TextEditor.Editors
 			this.viewFile.Name = "viewFile";
 			this.viewFile.Size = new System.Drawing.Size(200, 22);
 			this.viewFile.Text = "View File in File Explorer";
-			this.viewFile.Click += new System.EventHandler(this.viewFile_Click);
 			// 
-			// editMenu
+			// cutText
 			// 
-			this.editMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.undoAction,
-            this.redoAction});
-			this.editMenu.Name = "editMenu";
-			this.editMenu.Size = new System.Drawing.Size(39, 20);
-			this.editMenu.Text = "Edit";
+			this.cutText.Name = "cutText";
+			this.cutText.Size = new System.Drawing.Size(180, 22);
+			this.cutText.Text = "Cut";
+			// 
+			// copyText
+			// 
+			this.copyText.Name = "copyText";
+			this.copyText.Size = new System.Drawing.Size(180, 22);
+			this.copyText.Text = "Copy";
+			// 
+			// toolStripMenuItem4
+			// 
+			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+			this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+			// 
+			// pasteText
+			// 
+			this.pasteText.Name = "pasteText";
+			this.pasteText.Size = new System.Drawing.Size(180, 22);
+			this.pasteText.Text = "Paste";
+			// 
+			// toolStripMenuItem5
+			// 
+			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+			this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
 			// 
 			// undoAction
 			// 
 			this.undoAction.Name = "undoAction";
-			this.undoAction.Size = new System.Drawing.Size(103, 22);
+			this.undoAction.Size = new System.Drawing.Size(180, 22);
 			this.undoAction.Text = "Undo";
-			this.undoAction.Click += new System.EventHandler(this.undoAction_Click);
 			// 
 			// redoAction
 			// 
 			this.redoAction.Name = "redoAction";
-			this.redoAction.Size = new System.Drawing.Size(103, 22);
+			this.redoAction.Size = new System.Drawing.Size(180, 22);
 			this.redoAction.Text = "Redo";
-			this.redoAction.Click += new System.EventHandler(this.redoAction_Click);
-			// 
-			// formatMenu
-			// 
-			this.formatMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editorFont,
-            this.advancedEditorMenu});
-			this.formatMenu.Name = "formatMenu";
-			this.formatMenu.Size = new System.Drawing.Size(57, 20);
-			this.formatMenu.Text = "Format";
 			// 
 			// editorFont
 			// 
@@ -179,75 +209,66 @@ namespace TextEditor.Editors
 			this.editorFontSize.Name = "editorFontSize";
 			this.editorFontSize.Size = new System.Drawing.Size(180, 22);
 			this.editorFontSize.Text = "Size";
-			this.editorFontSize.Click += new System.EventHandler(this.editorFontSize_Click);
 			// 
 			// editorFontFamily
 			// 
 			this.editorFontFamily.Name = "editorFontFamily";
 			this.editorFontFamily.Size = new System.Drawing.Size(180, 22);
 			this.editorFontFamily.Text = "Family";
-			this.editorFontFamily.Click += new System.EventHandler(this.editorFontFamily_Click);
 			// 
-			// advancedEditorMenu
+			// editorWordWrap
 			// 
-			this.advancedEditorMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editorHRuler,
-            this.editorVisibleSpacesTabs,
-            this.editorShowCurrentLine});
-			this.advancedEditorMenu.Name = "advancedEditorMenu";
-			this.advancedEditorMenu.Size = new System.Drawing.Size(180, 22);
-			this.advancedEditorMenu.Text = "Advanced Editor";
+			this.editorWordWrap.Name = "editorWordWrap";
+			this.editorWordWrap.Size = new System.Drawing.Size(180, 22);
+			this.editorWordWrap.Text = "Word Wrap";
 			// 
-			// editorHRuler
+			// advancedEditor
 			// 
-			this.editorHRuler.CheckOnClick = true;
-			this.editorHRuler.Name = "editorHRuler";
-			this.editorHRuler.Size = new System.Drawing.Size(184, 22);
-			this.editorHRuler.Text = "HRuler";
-			this.editorHRuler.Click += new System.EventHandler(this.editorHRuler_Click);
+			this.advancedEditor.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+			this.advancedEditor.AutoScrollMinSize = new System.Drawing.Size(25, 15);
+			this.advancedEditor.BackBrush = null;
+			this.advancedEditor.CharHeight = 15;
+			this.advancedEditor.CharWidth = 7;
+			this.advancedEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.advancedEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+			this.advancedEditor.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.advancedEditor.Font = new System.Drawing.Font("Consolas", 9.75F);
+			this.advancedEditor.IsReplaceMode = false;
+			this.advancedEditor.LineNumberColor = System.Drawing.Color.Black;
+			this.advancedEditor.Location = new System.Drawing.Point(0, 24);
+			this.advancedEditor.Name = "advancedEditor";
+			this.advancedEditor.Paddings = new System.Windows.Forms.Padding(0);
+			this.advancedEditor.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+			this.advancedEditor.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("advancedEditor.ServiceColors")));
+			this.advancedEditor.Size = new System.Drawing.Size(777, 473);
+			this.advancedEditor.TabIndex = 1;
+			this.advancedEditor.Zoom = 100;
 			// 
-			// editorVisibleSpacesTabs
+			// CodeEditor
 			// 
-			this.editorVisibleSpacesTabs.CheckOnClick = true;
-			this.editorVisibleSpacesTabs.Name = "editorVisibleSpacesTabs";
-			this.editorVisibleSpacesTabs.Size = new System.Drawing.Size(184, 22);
-			this.editorVisibleSpacesTabs.Text = "Show Spaces/Tabs";
-			this.editorVisibleSpacesTabs.Click += new System.EventHandler(this.editorVisibleSpacesTabs_Click);
-			// 
-			// editorShowCurrentLine
-			// 
-			this.editorShowCurrentLine.CheckOnClick = true;
-			this.editorShowCurrentLine.Name = "editorShowCurrentLine";
-			this.editorShowCurrentLine.Size = new System.Drawing.Size(184, 22);
-			this.editorShowCurrentLine.Text = "Display Selected Line";
-			this.editorShowCurrentLine.Click += new System.EventHandler(this.editorShowCurrentLine_Click);
-			// 
-			// advancedTextEditor
-			// 
-			this.advancedTextEditor.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.advancedTextEditor.IsReadOnly = false;
-			this.advancedTextEditor.Location = new System.Drawing.Point(0, 24);
-			this.advancedTextEditor.Name = "advancedTextEditor";
-			this.advancedTextEditor.Size = new System.Drawing.Size(777, 473);
-			this.advancedTextEditor.TabIndex = 1;
-			// 
-			// TextEditor
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
 			this.ClientSize = new System.Drawing.Size(777, 497);
-			this.Controls.Add(this.advancedTextEditor);
+			this.Controls.Add(this.advancedEditor);
 			this.Controls.Add(this.menuStrip1);
-			this.Font = new System.Drawing.Font("Roboto", 14F);
-			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
-			this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-			this.Name = "TextEditor";
+			this.Name = "CodeEditor";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "TextEditor";
-			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TextEditor_FormClosed);
+			this.Text = "CodeEditor";
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.advancedEditor)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -267,15 +288,17 @@ namespace TextEditor.Editors
 		private System.Windows.Forms.ToolStripMenuItem newFile;
 		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
 		private System.Windows.Forms.ToolStripMenuItem viewFile;
+		private System.Windows.Forms.ToolStripMenuItem cutText;
+		private System.Windows.Forms.ToolStripMenuItem copyText;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+		private System.Windows.Forms.ToolStripMenuItem pasteText;
+		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+		private System.Windows.Forms.ToolStripMenuItem undoAction;
+		private System.Windows.Forms.ToolStripMenuItem redoAction;
 		private System.Windows.Forms.ToolStripMenuItem editorFont;
 		private System.Windows.Forms.ToolStripMenuItem editorFontSize;
 		private System.Windows.Forms.ToolStripMenuItem editorFontFamily;
-		private System.Windows.Forms.ToolStripMenuItem advancedEditorMenu;
-		private System.Windows.Forms.ToolStripMenuItem editorHRuler;
-		private System.Windows.Forms.ToolStripMenuItem editorVisibleSpacesTabs;
-		private System.Windows.Forms.ToolStripMenuItem editorShowCurrentLine;
-		private ICSharpCode.TextEditor.TextEditorControl advancedTextEditor;
-		private System.Windows.Forms.ToolStripMenuItem undoAction;
-		private System.Windows.Forms.ToolStripMenuItem redoAction;
+		private System.Windows.Forms.ToolStripMenuItem editorWordWrap;
+		private FastColoredTextBoxNS.FastColoredTextBox advancedEditor;
 	}
 }
