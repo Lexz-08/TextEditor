@@ -1,3 +1,7 @@
+![](https://img.shields.io/badge/development-undergoing-brightgreen)
+![](https://img.shields.io/badge/version-0.1-yellow)
+![](https://img.shields.io/badge/release-alpha-informational)
+
 ## TextEditor
 ### Description
 Unofficially the most advanced text/code editing application/program I have ever made. Completely free just like every other thing I program.
@@ -7,7 +11,6 @@ Unofficially the most advanced text/code editing application/program I have ever
   - Code Editor (Basic Code Editing)
 
 ### Features Coming Soon
-  - Information Displayer (Bottom of Text/Code Editor)
   - Notepad (You will not be able to open/save files with this.)
   - The ability to change the current language of the code editor.
   - Tell the program whether or not it should/can show if the menu's allow the 'Checked' property to show the true/false state.
