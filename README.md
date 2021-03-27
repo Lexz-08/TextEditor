@@ -1,3 +1,7 @@
+![](https://img.shields.io/badge/development-on--hold-inactive)
+![](https://img.shields.io/badge/version-0.1-yellow)
+![](https://img.shields.io/badge/release-alpha-informational)
+
 ## TextEditor
 ### Description
 Unofficially the most advanced text/code editing application/program I have ever made. Completely free just like every other thing I program.
