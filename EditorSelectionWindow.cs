@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using TextEditor.Editors;
 using Transitions;
 
 namespace TextEditor
@@ -54,6 +55,22 @@ namespace TextEditor
 		{
 			Visible = false;
 			new Editors.TextEditor(this).Show();
+
+			closeWindowSelection.Text = "CLOSE";
+			closeWindowSelection.Location = new Point(239, 194);
+		}
+		private void useCodeEditor_Click(object sender, EventArgs e)
+		{
+			Visible = false;
+			new CodeEditor(this).Show();
+
+			closeWindowSelection.Text = "CLOSE";
+			closeWindowSelection.Location = new Point(239, 194);
+		}
+		private void useNotepad_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Unfortunately this editor type has not been developed. I am currently working on it any chance I get/have, and will release it with the application ASAP.", "Editor Not Released and Coming Soon",
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 	}
 }

@@ -81,6 +81,7 @@ namespace TextEditor
 			this.useNotepad.TabIndex = 2;
 			this.useNotepad.TabStop = false;
 			this.helpInfo.SetToolTip(this.useNotepad, "Use the notepad for just taking notes.");
+			this.useNotepad.Click += new System.EventHandler(this.useNotepad_Click);
 			this.useNotepad.MouseEnter += new System.EventHandler(this.editorSelection_FadeHover);
 			this.useNotepad.MouseLeave += new System.EventHandler(this.editorSelection_FadeLeave);
 			// 
@@ -95,6 +96,7 @@ namespace TextEditor
 			this.useCodeEditor.TabIndex = 1;
 			this.useCodeEditor.TabStop = false;
 			this.helpInfo.SetToolTip(this.useCodeEditor, "Use the code editor to edit advanced text and strings.");
+			this.useCodeEditor.Click += new System.EventHandler(this.useCodeEditor_Click);
 			this.useCodeEditor.MouseEnter += new System.EventHandler(this.editorSelection_FadeHover);
 			this.useCodeEditor.MouseLeave += new System.EventHandler(this.editorSelection_FadeLeave);
 			// 
@@ -116,13 +118,13 @@ namespace TextEditor
 			// closeWindowSelection
 			// 
 			this.closeWindowSelection.AutoSize = true;
-			this.closeWindowSelection.Font = new System.Drawing.Font("Webdings", 14F);
+			this.closeWindowSelection.Font = new System.Drawing.Font("Roboto", 14F);
 			this.closeWindowSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-			this.closeWindowSelection.Location = new System.Drawing.Point(259, 194);
+			this.closeWindowSelection.Location = new System.Drawing.Point(232, 194);
 			this.closeWindowSelection.Name = "closeWindowSelection";
-			this.closeWindowSelection.Size = new System.Drawing.Size(29, 24);
+			this.closeWindowSelection.Size = new System.Drawing.Size(81, 23);
 			this.closeWindowSelection.TabIndex = 2;
-			this.closeWindowSelection.Text = "r";
+			this.closeWindowSelection.Text = "CANCEL";
 			this.helpInfo.SetToolTip(this.closeWindowSelection, "Close the application and the selector.");
 			this.closeWindowSelection.Click += new System.EventHandler(this.closeWindowSelection_Click);
 			this.closeWindowSelection.MouseEnter += new System.EventHandler(this.closeWindowSelection_MouseEnter);

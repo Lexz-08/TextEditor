@@ -1,4 +1,5 @@
 ﻿using DropShadow;
+using FastColoredTextBoxNS;
 using ICSharpCode.TextEditor;
 using System.Drawing;
 using System.Drawing.Text;
@@ -8,7 +9,7 @@ namespace TextEditor.PropertyEditors
 {
 	public partial class FontNameEditor : Form
 	{
-		public FontNameEditor(RichTextBox basicEditor, TextEditorControl advancedEditor)
+		public FontNameEditor(RichTextBox basicEditor, TextEditorControl advancedEditor, FastColoredTextBox superAdvancedEditor)
 		{
 			InitializeComponent();
 
@@ -27,8 +28,9 @@ namespace TextEditor.PropertyEditors
 
 			this.basicEditor = basicEditor;
 			this.advancedEditor = advancedEditor;
+			this.superAdvancedEditor = superAdvancedEditor;
 
-			if (basicEditor != null && advancedEditor == null)
+			if (basicEditor != null && advancedEditor == null && superAdvancedEditor == null)
 			{
 				string editorFontName = basicEditor.Font.Name;
 				
@@ -40,9 +42,21 @@ namespace TextEditor.PropertyEditors
 					}
 				}
 			}
-			else if (basicEditor == null && advancedEditor != null)
+			else if (basicEditor == null && advancedEditor != null && superAdvancedEditor == null)
 			{
 				string editorFontName = advancedEditor.Font.Name;
+
+				for (int i = 0; i < fontName.Items.Count; i++)
+				{
+					if (fontName.Items[i].ToString() == editorFontName)
+					{
+						fontName.Text = editorFontName;
+					}
+				}
+			}
+			else if (basicEditor == null && advancedEditor == null && superAdvancedEditor != null)
+			{
+				string editorFontName = superAdvancedEditor.Font.Name;
 
 				for (int i = 0; i < fontName.Items.Count; i++)
 				{
@@ -56,6 +70,7 @@ namespace TextEditor.PropertyEditors
 
 		private RichTextBox basicEditor = null;
 		private TextEditorControl advancedEditor = null;
+		private FastColoredTextBox superAdvancedEditor = null;
 
 		private string[] GetInstalledFonts()
 		{
@@ -72,10 +87,12 @@ namespace TextEditor.PropertyEditors
 
 		private void confirmInput_Click(object sender, System.EventArgs e)
 		{
-			if (basicEditor != null && advancedEditor == null)
+			if (basicEditor != null && advancedEditor == null && superAdvancedEditor == null)
 				basicEditor.Font = new Font(fontName.Text, basicEditor.Font.Size);
-			else if (basicEditor == null && advancedEditor != null)
+			else if (basicEditor == null && advancedEditor != null && superAdvancedEditor == null)
 				advancedEditor.Font = new Font(fontName.Text, advancedEditor.Font.Size);
+			else if (basicEditor == null && advancedEditor == null && superAdvancedEditor != null)
+				superAdvancedEditor.Font = new Font(fontName.Text, superAdvancedEditor.Font.Size);
 
 			Close();
 		}

@@ -1,5 +1,4 @@
-﻿using ICSharpCode.TextEditor;
-using ICSharpCode.TextEditor.Document;
+﻿using ICSharpCode.TextEditor.Document;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -35,14 +34,7 @@ namespace TextEditor.Editors
 
 		private void TextEditor_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			DialogResult userChoice = MessageBox.Show("Would you like to select another editor or close the application itself?\n\n" +
-				"[Yes: Choose Another Editor, No: Close the Application Itself]", "Which One?",
-				MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-			if (userChoice == DialogResult.Yes)
-				selectionWindow.Visible = true;
-			else if (userChoice == DialogResult.No)
-				Environment.Exit(0);
+			selectionWindow.Visible = true;
 		}
 
 		private string selectedFile = string.Empty;
@@ -236,11 +228,11 @@ namespace TextEditor.Editors
 		// format menu -> font
 		private void editorFontSize_Click(object sender, EventArgs e)
 		{
-			new FontSizeEditor(null, advancedTextEditor).ShowDialog();
+			new FontSizeEditor(null, advancedTextEditor, null).ShowDialog();
 		}
 		private void editorFontFamily_Click(object sender, EventArgs e)
 		{
-			new FontNameEditor(null, advancedTextEditor).ShowDialog();
+			new FontNameEditor(null, advancedTextEditor, null).ShowDialog();
 		}
 
 		// format menu -> advanced editor
