@@ -24,6 +24,19 @@ namespace TextEditor.Editors
 					Text = "TextEditor - No File Selected";
 				else if (selectedFile != string.Empty)
 					Text = "TextEditor - File: " + selectedFile;
+
+				currentFont.Text = string.Format("{0}, {1}pt",
+					advancedTextEditor.Font.Name,
+					advancedTextEditor.Font.Size);
+
+				currentHRuler.Text = string.Format("HRuler: {0}",
+					editorHRuler.Checked ? "ON" : "OFF");
+
+				currentShowTabsSpaces.Text = string.Format("Tabs / Spaces: {0}",
+					editorVisibleSpacesTabs.Checked ? "Visible" : "Not Visible");
+
+				currentSelectedLineVisible.Text = string.Format("Current Line: {0}",
+					editorShowCurrentLine.Checked ? "Marked" : "Not Marked");
 			};
 			t.Start();
 

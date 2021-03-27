@@ -69,7 +69,9 @@ namespace TextEditor
 		}
 		private void useNotepad_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Unfortunately this editor type has not been developed. I am currently working on it any chance I get/have, and will release it with the application ASAP.", "Editor Not Released and Coming Soon",
+			MessageBox.Show("Unfortunately this editor type has not been developed yet.\n" +
+				"I will not be able to work on it until I have fully finished the other editors.\n\n" +
+				"Sorry! Thank you for understanding though!", "Editor Not Released and Coming Soon",
 				MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 	}

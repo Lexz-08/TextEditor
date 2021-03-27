@@ -22,6 +22,15 @@ namespace TextEditor.Editors
 					Text = "CodeEditor - No File Selected";
 				else if (selectedFile != string.Empty)
 					Text = "CodeEditor - File: " + selectedFile;
+
+				currentFont.Text = string.Format("{0}, {1}pt",
+					advancedEditor.Font.Name,
+					advancedEditor.Font.Size);
+
+				currentWordWrap.Text = string.Format("WordWrap: {0}",
+					editorWordWrap.Checked ? "Active" : "Inactive");
+
+				currentLanguage.Text = string.Format("{0}", advancedEditor.Language);
 			};
 			t.Start();
 

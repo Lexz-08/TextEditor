@@ -55,8 +55,15 @@ namespace TextEditor.Editors
 			this.editorFontFamily = new System.Windows.Forms.ToolStripMenuItem();
 			this.editorWordWrap = new System.Windows.Forms.ToolStripMenuItem();
 			this.advancedEditor = new FastColoredTextBoxNS.FastColoredTextBox();
+			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.currentFont = new System.Windows.Forms.ToolStripLabel();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.currentLanguage = new System.Windows.Forms.ToolStripLabel();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.currentWordWrap = new System.Windows.Forms.ToolStripLabel();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.advancedEditor)).BeginInit();
+			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -90,50 +97,57 @@ namespace TextEditor.Editors
 			// openFile
 			// 
 			this.openFile.Name = "openFile";
-			this.openFile.Size = new System.Drawing.Size(200, 22);
+			this.openFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+			this.openFile.Size = new System.Drawing.Size(273, 22);
 			this.openFile.Text = "Open";
 			this.openFile.Click += new System.EventHandler(this.openFile_Click);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(197, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(270, 6);
 			// 
 			// saveFile
 			// 
 			this.saveFile.Name = "saveFile";
-			this.saveFile.Size = new System.Drawing.Size(200, 22);
+			this.saveFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+			this.saveFile.Size = new System.Drawing.Size(273, 22);
 			this.saveFile.Text = "Save";
 			this.saveFile.Click += new System.EventHandler(this.saveFile_Click);
 			// 
 			// saveFileAs
 			// 
 			this.saveFileAs.Name = "saveFileAs";
-			this.saveFileAs.Size = new System.Drawing.Size(200, 22);
+			this.saveFileAs.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+			this.saveFileAs.Size = new System.Drawing.Size(273, 22);
 			this.saveFileAs.Text = "Save As";
 			this.saveFileAs.Click += new System.EventHandler(this.saveFileAs_Click);
 			// 
 			// toolStripMenuItem2
 			// 
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(197, 6);
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(270, 6);
 			// 
 			// newFile
 			// 
 			this.newFile.Name = "newFile";
-			this.newFile.Size = new System.Drawing.Size(200, 22);
+			this.newFile.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+			this.newFile.Size = new System.Drawing.Size(273, 22);
 			this.newFile.Text = "New";
 			this.newFile.Click += new System.EventHandler(this.newFile_Click);
 			// 
 			// toolStripMenuItem3
 			// 
 			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new System.Drawing.Size(197, 6);
+			this.toolStripMenuItem3.Size = new System.Drawing.Size(270, 6);
 			// 
 			// viewFile
 			// 
 			this.viewFile.Name = "viewFile";
-			this.viewFile.Size = new System.Drawing.Size(200, 22);
+			this.viewFile.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.V)));
+			this.viewFile.Size = new System.Drawing.Size(273, 22);
 			this.viewFile.Text = "View File in File Explorer";
 			this.viewFile.Click += new System.EventHandler(this.viewFile_Click);
 			// 
@@ -154,6 +168,7 @@ namespace TextEditor.Editors
 			// cutText
 			// 
 			this.cutText.Name = "cutText";
+			this.cutText.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
 			this.cutText.Size = new System.Drawing.Size(180, 22);
 			this.cutText.Text = "Cut";
 			this.cutText.Click += new System.EventHandler(this.cutText_Click);
@@ -161,6 +176,7 @@ namespace TextEditor.Editors
 			// copyText
 			// 
 			this.copyText.Name = "copyText";
+			this.copyText.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
 			this.copyText.Size = new System.Drawing.Size(180, 22);
 			this.copyText.Text = "Copy";
 			this.copyText.Click += new System.EventHandler(this.copyText_Click);
@@ -173,6 +189,7 @@ namespace TextEditor.Editors
 			// pasteText
 			// 
 			this.pasteText.Name = "pasteText";
+			this.pasteText.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
 			this.pasteText.Size = new System.Drawing.Size(180, 22);
 			this.pasteText.Text = "Paste";
 			this.pasteText.Click += new System.EventHandler(this.pasteText_Click);
@@ -185,6 +202,7 @@ namespace TextEditor.Editors
 			// undoAction
 			// 
 			this.undoAction.Name = "undoAction";
+			this.undoAction.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
 			this.undoAction.Size = new System.Drawing.Size(180, 22);
 			this.undoAction.Text = "Undo";
 			this.undoAction.Click += new System.EventHandler(this.undoAction_Click);
@@ -192,6 +210,7 @@ namespace TextEditor.Editors
 			// redoAction
 			// 
 			this.redoAction.Name = "redoAction";
+			this.redoAction.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
 			this.redoAction.Size = new System.Drawing.Size(180, 22);
 			this.redoAction.Text = "Redo";
 			this.redoAction.Click += new System.EventHandler(this.redoAction_Click);
@@ -211,12 +230,14 @@ namespace TextEditor.Editors
             this.editorFontSize,
             this.editorFontFamily});
 			this.editorFont.Name = "editorFont";
-			this.editorFont.Size = new System.Drawing.Size(180, 22);
+			this.editorFont.Size = new System.Drawing.Size(202, 22);
 			this.editorFont.Text = "Font";
 			// 
 			// editorFontSize
 			// 
 			this.editorFontSize.Name = "editorFontSize";
+			this.editorFontSize.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.S)));
 			this.editorFontSize.Size = new System.Drawing.Size(180, 22);
 			this.editorFontSize.Text = "Size";
 			this.editorFontSize.Click += new System.EventHandler(this.editorFontSize_Click);
@@ -224,19 +245,27 @@ namespace TextEditor.Editors
 			// editorFontFamily
 			// 
 			this.editorFontFamily.Name = "editorFontFamily";
+			this.editorFontFamily.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.F)));
 			this.editorFontFamily.Size = new System.Drawing.Size(180, 22);
 			this.editorFontFamily.Text = "Family";
 			this.editorFontFamily.Click += new System.EventHandler(this.editorFontFamily_Click);
 			// 
 			// editorWordWrap
 			// 
+			this.editorWordWrap.CheckOnClick = true;
 			this.editorWordWrap.Name = "editorWordWrap";
-			this.editorWordWrap.Size = new System.Drawing.Size(180, 22);
+			this.editorWordWrap.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
+            | System.Windows.Forms.Keys.W)));
+			this.editorWordWrap.Size = new System.Drawing.Size(202, 22);
 			this.editorWordWrap.Text = "Word Wrap";
 			this.editorWordWrap.Click += new System.EventHandler(this.editorWordWrap_Click);
 			// 
 			// advancedEditor
 			// 
+			this.advancedEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.advancedEditor.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -254,7 +283,6 @@ namespace TextEditor.Editors
 			this.advancedEditor.CharWidth = 7;
 			this.advancedEditor.Cursor = System.Windows.Forms.Cursors.IBeam;
 			this.advancedEditor.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-			this.advancedEditor.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.advancedEditor.Font = new System.Drawing.Font("Consolas", 9.75F);
 			this.advancedEditor.IsReplaceMode = false;
 			this.advancedEditor.LineNumberColor = System.Drawing.Color.Black;
@@ -263,9 +291,54 @@ namespace TextEditor.Editors
 			this.advancedEditor.Paddings = new System.Windows.Forms.Padding(0);
 			this.advancedEditor.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
 			this.advancedEditor.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("advancedEditor.ServiceColors")));
-			this.advancedEditor.Size = new System.Drawing.Size(777, 473);
+			this.advancedEditor.Size = new System.Drawing.Size(777, 448);
 			this.advancedEditor.TabIndex = 1;
 			this.advancedEditor.Zoom = 100;
+			// 
+			// toolStrip1
+			// 
+			this.toolStrip1.BackColor = System.Drawing.SystemColors.Window;
+			this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.currentFont,
+            this.toolStripSeparator1,
+            this.currentWordWrap,
+            this.toolStripSeparator2,
+            this.currentLanguage});
+			this.toolStrip1.Location = new System.Drawing.Point(0, 472);
+			this.toolStrip1.Name = "toolStrip1";
+			this.toolStrip1.Size = new System.Drawing.Size(777, 25);
+			this.toolStrip1.TabIndex = 2;
+			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// currentFont
+			// 
+			this.currentFont.Name = "currentFont";
+			this.currentFont.Size = new System.Drawing.Size(93, 22);
+			this.currentFont.Text = "Consolas, 9.75pt";
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+			// 
+			// currentLanguage
+			// 
+			this.currentLanguage.Name = "currentLanguage";
+			this.currentLanguage.Size = new System.Drawing.Size(49, 22);
+			this.currentLanguage.Text = "Custom";
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			// 
+			// currentWordWrap
+			// 
+			this.currentWordWrap.Name = "currentWordWrap";
+			this.currentWordWrap.Size = new System.Drawing.Size(111, 22);
+			this.currentWordWrap.Text = "WordWrap: Inactive";
 			// 
 			// CodeEditor
 			// 
@@ -273,6 +346,7 @@ namespace TextEditor.Editors
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
 			this.ClientSize = new System.Drawing.Size(777, 497);
+			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.advancedEditor);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
@@ -283,6 +357,8 @@ namespace TextEditor.Editors
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.advancedEditor)).EndInit();
+			this.toolStrip1.ResumeLayout(false);
+			this.toolStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -314,5 +390,11 @@ namespace TextEditor.Editors
 		private System.Windows.Forms.ToolStripMenuItem editorFontFamily;
 		private System.Windows.Forms.ToolStripMenuItem editorWordWrap;
 		private FastColoredTextBoxNS.FastColoredTextBox advancedEditor;
+		private System.Windows.Forms.ToolStrip toolStrip1;
+		private System.Windows.Forms.ToolStripLabel currentFont;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripLabel currentLanguage;
+		private System.Windows.Forms.ToolStripLabel currentWordWrap;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 	}
 }

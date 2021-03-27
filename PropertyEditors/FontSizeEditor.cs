@@ -34,7 +34,7 @@ namespace TextEditor.PropertyEditors
 				{
 					fontSizeParts = fontSizeStr.Split('.');
 					fontSizeWhole.Value = Convert.ToDecimal(fontSizeParts[0]);
-					fontSizeDecimal.Value = Convert.ToDecimal(fontSizeParts[1]);
+					fontSizeDecimal.Value = Convert.ToDecimal(fontSizeParts[1].Substring(0, 2));
 				}
 				else
 				{
@@ -49,7 +49,7 @@ namespace TextEditor.PropertyEditors
 				{
 					fontSizeParts = fontSizeStr.Split('.');
 					fontSizeWhole.Value = Convert.ToDecimal(fontSizeParts[0]);
-					fontSizeDecimal.Value = Convert.ToDecimal(fontSizeParts[1]);
+					fontSizeDecimal.Value = Convert.ToDecimal(fontSizeParts[1].Substring(0, 2));
 				}
 				else
 				{
@@ -64,7 +64,7 @@ namespace TextEditor.PropertyEditors
 				{
 					fontSizeParts = fontSizeStr.Split('.');
 					fontSizeWhole.Value = Convert.ToDecimal(fontSizeParts[0]);
-					fontSizeDecimal.Value = Convert.ToDecimal(fontSizeParts[1]);
+					fontSizeDecimal.Value = Convert.ToDecimal(fontSizeParts[1].Substring(0, 2));
 				}
 				else
 				{
