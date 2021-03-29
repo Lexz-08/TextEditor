@@ -12,7 +12,6 @@ Unofficially the most advanced text/code editing application/program I have ever
 
 ### Features Coming Soon
   - Notepad (You will not be able to open/save files with this.)
-  - The ability to change the current language of the code editor.
   - Tell the program whether or not it should/can show if the menu's allow the 'Checked' property to show the true/false state.
   - Settings (To save and load your changes instead of the constant default values)
     - Unfortunately due to the size of the changes to the program from implementing this feature, I will not be implementing it for a while.
