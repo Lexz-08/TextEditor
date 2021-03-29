@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/development-undergoing-brightgreen)
 ![](https://img.shields.io/badge/version-0.1-yellow)
-![](https://img.shields.io/badge/release-alpha-informational)
+![](https://img.shields.io/badge/release-stable-informational)
 
 ## TextEditor
 ### Description
