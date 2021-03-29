@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FastColoredTextBoxNS;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -143,57 +144,62 @@ namespace TextEditor.Editors
 		}
 		private void newFile_Click(object sender, EventArgs e)
 		{
-			using (fileReader = new StreamReader(selectedFile))
+			if (selectedFile == string.Empty)
+				resetEditor();
+			else
 			{
-				bool condition = advancedEditor.Text == fileReader.ReadToEnd();
-
-				if (condition)
+				using (fileReader = new StreamReader(selectedFile))
 				{
-					resetEditor();
-				}
-				else if (!condition)
-				{
-					DialogResult userChoice1 = MessageBox.Show("Are you sure you'd like to start/create a new file without saving these changes?", "Continue Without Saving?",
-						MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+					bool condition = advancedEditor.Text == fileReader.ReadToEnd();
 
-					switch (userChoice1)
+					if (condition)
 					{
-						case DialogResult.Yes:
-							resetEditor();
-							break;
-						case DialogResult.No:
-							DialogResult userChoice2 = MessageBox.Show("Would you like to save the changes or save them to a new file?", "Save To Current or Make New File?",
-								MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+						resetEditor();
+					}
+					else if (!condition)
+					{
+						DialogResult userChoice1 = MessageBox.Show("Are you sure you'd like to start/create a new file without saving these changes?", "Continue Without Saving?",
+							MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-							switch (userChoice2)
-							{
-								case DialogResult.Yes:
-									using (fileWriter = new StreamWriter(selectedFile))
-									{
-										fileWriter.Write(advancedEditor.Text);
-										fileWriter.Close();
-									}
-									break;
-								case DialogResult.No:
-									using (SaveFileDialog sfd = new SaveFileDialog
-									{
-										Title = "Please choose the location and name for your new file...",
-										Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*",
-										FilterIndex = 0,
-									})
-									{
-										if (sfd.ShowDialog() == DialogResult.OK)
+						switch (userChoice1)
+						{
+							case DialogResult.Yes:
+								resetEditor();
+								break;
+							case DialogResult.No:
+								DialogResult userChoice2 = MessageBox.Show("Would you like to save the changes or save them to a new file?", "Save To Current or Make New File?",
+									MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+								switch (userChoice2)
+								{
+									case DialogResult.Yes:
+										using (fileWriter = new StreamWriter(selectedFile))
 										{
-											using (fileWriter = new StreamWriter(selectedFile))
+											fileWriter.Write(advancedEditor.Text);
+											fileWriter.Close();
+										}
+										break;
+									case DialogResult.No:
+										using (SaveFileDialog sfd = new SaveFileDialog
+										{
+											Title = "Please choose the location and name for your new file...",
+											Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*",
+											FilterIndex = 0,
+										})
+										{
+											if (sfd.ShowDialog() == DialogResult.OK)
 											{
-												fileWriter.Write(advancedEditor.Text);
-												fileWriter.Close();
+												using (fileWriter = new StreamWriter(selectedFile))
+												{
+													fileWriter.Write(advancedEditor.Text);
+													fileWriter.Close();
+												}
 											}
 										}
-									}
-									break;
-							}
-							break;
+										break;
+								}
+								break;
+						}
 					}
 				}
 			}
@@ -258,6 +264,134 @@ namespace TextEditor.Editors
 		private void editorWordWrap_Click(object sender, EventArgs e)
 		{
 			advancedEditor.WordWrap = editorWordWrap.Checked;
+		}
+
+		// menu at bottom of window
+		private void btnlangCustom_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = true;
+			btnlangCSharp.Checked = false;
+			btnlangVisualBasic.Checked = false;
+			btnlangHTML.Checked = false;
+			btnlangXML.Checked = false;
+			btnlangSQL.Checked = false;
+			btnlangPHP.Checked = false;
+			btnlangJS.Checked = false;
+			btnlangLua.Checked = false;
+
+			advancedEditor.Language = Language.Custom;
+		}
+		private void btnlangCSharp_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = false;
+			btnlangCSharp.Checked = true;
+			btnlangVisualBasic.Checked = false;
+			btnlangHTML.Checked = false;
+			btnlangXML.Checked = false;
+			btnlangSQL.Checked = false;
+			btnlangPHP.Checked = false;
+			btnlangJS.Checked = false;
+			btnlangLua.Checked = false;
+
+			advancedEditor.Language = Language.CSharp;
+		}
+		private void btnlangVisualBasic_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = false;
+			btnlangCSharp.Checked = false;
+			btnlangVisualBasic.Checked = true;
+			btnlangHTML.Checked = false;
+			btnlangXML.Checked = false;
+			btnlangSQL.Checked = false;
+			btnlangPHP.Checked = false;
+			btnlangJS.Checked = false;
+			btnlangLua.Checked = false;
+
+			advancedEditor.Language = Language.VB;
+		}
+		private void btnlangHTML_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = false;
+			btnlangCSharp.Checked = false;
+			btnlangVisualBasic.Checked = false;
+			btnlangHTML.Checked = true;
+			btnlangXML.Checked = false;
+			btnlangSQL.Checked = false;
+			btnlangPHP.Checked = false;
+			btnlangJS.Checked = false;
+			btnlangLua.Checked = false;
+
+			advancedEditor.Language = Language.HTML;
+		}
+		private void btnlangXML_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = false;
+			btnlangCSharp.Checked = false;
+			btnlangVisualBasic.Checked = false;
+			btnlangHTML.Checked = false;
+			btnlangXML.Checked = true;
+			btnlangSQL.Checked = false;
+			btnlangPHP.Checked = false;
+			btnlangJS.Checked = false;
+			btnlangLua.Checked = false;
+
+			advancedEditor.Language = Language.XML;
+		}
+		private void btnlangSQL_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = false;
+			btnlangCSharp.Checked = false;
+			btnlangVisualBasic.Checked = false;
+			btnlangHTML.Checked = false;
+			btnlangXML.Checked = false;
+			btnlangSQL.Checked = true;
+			btnlangPHP.Checked = false;
+			btnlangJS.Checked = false;
+			btnlangLua.Checked = false;
+
+			advancedEditor.Language = Language.SQL;
+		}
+		private void btnlangPHP_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = false;
+			btnlangCSharp.Checked = false;
+			btnlangVisualBasic.Checked = false;
+			btnlangHTML.Checked = false;
+			btnlangXML.Checked = false;
+			btnlangSQL.Checked = false;
+			btnlangPHP.Checked = true;
+			btnlangJS.Checked = false;
+			btnlangLua.Checked = false;
+
+			advancedEditor.Language = Language.PHP;
+		}
+		private void btnlangJS_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = false;
+			btnlangCSharp.Checked = false;
+			btnlangVisualBasic.Checked = false;
+			btnlangHTML.Checked = false;
+			btnlangXML.Checked = false;
+			btnlangSQL.Checked = false;
+			btnlangPHP.Checked = false;
+			btnlangJS.Checked = true;
+			btnlangLua.Checked = false;
+
+			advancedEditor.Language = Language.JS;
+		}
+		private void btnlangLua_Click(object sender, EventArgs e)
+		{
+			btnlangCustom.Checked = false;
+			btnlangCSharp.Checked = false;
+			btnlangVisualBasic.Checked = false;
+			btnlangHTML.Checked = false;
+			btnlangXML.Checked = false;
+			btnlangSQL.Checked = false;
+			btnlangPHP.Checked = false;
+			btnlangJS.Checked = false;
+			btnlangLua.Checked = true;
+
+			advancedEditor.Language = Language.Lua;
 		}
 	}
 }

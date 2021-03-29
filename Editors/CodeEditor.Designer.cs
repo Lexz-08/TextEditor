@@ -58,9 +58,19 @@ namespace TextEditor.Editors
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.currentFont = new System.Windows.Forms.ToolStripLabel();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.currentLanguage = new System.Windows.Forms.ToolStripLabel();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.currentWordWrap = new System.Windows.Forms.ToolStripLabel();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.currentLanguage = new System.Windows.Forms.ToolStripLabel();
+			this.drpdwnSelectLanguage = new System.Windows.Forms.ToolStripDropDownButton();
+			this.btnlangJS = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnlangXML = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnlangHTML = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnlangVisualBasic = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnlangCSharp = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnlangCustom = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnlangPHP = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnlangSQL = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnlangLua = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.advancedEditor)).BeginInit();
 			this.toolStrip1.SuspendLayout();
@@ -169,7 +179,7 @@ namespace TextEditor.Editors
 			// 
 			this.cutText.Name = "cutText";
 			this.cutText.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-			this.cutText.Size = new System.Drawing.Size(180, 22);
+			this.cutText.Size = new System.Drawing.Size(144, 22);
 			this.cutText.Text = "Cut";
 			this.cutText.Click += new System.EventHandler(this.cutText_Click);
 			// 
@@ -177,33 +187,33 @@ namespace TextEditor.Editors
 			// 
 			this.copyText.Name = "copyText";
 			this.copyText.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-			this.copyText.Size = new System.Drawing.Size(180, 22);
+			this.copyText.Size = new System.Drawing.Size(144, 22);
 			this.copyText.Text = "Copy";
 			this.copyText.Click += new System.EventHandler(this.copyText_Click);
 			// 
 			// toolStripMenuItem4
 			// 
 			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-			this.toolStripMenuItem4.Size = new System.Drawing.Size(177, 6);
+			this.toolStripMenuItem4.Size = new System.Drawing.Size(141, 6);
 			// 
 			// pasteText
 			// 
 			this.pasteText.Name = "pasteText";
 			this.pasteText.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-			this.pasteText.Size = new System.Drawing.Size(180, 22);
+			this.pasteText.Size = new System.Drawing.Size(144, 22);
 			this.pasteText.Text = "Paste";
 			this.pasteText.Click += new System.EventHandler(this.pasteText_Click);
 			// 
 			// toolStripMenuItem5
 			// 
 			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-			this.toolStripMenuItem5.Size = new System.Drawing.Size(177, 6);
+			this.toolStripMenuItem5.Size = new System.Drawing.Size(141, 6);
 			// 
 			// undoAction
 			// 
 			this.undoAction.Name = "undoAction";
 			this.undoAction.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-			this.undoAction.Size = new System.Drawing.Size(180, 22);
+			this.undoAction.Size = new System.Drawing.Size(144, 22);
 			this.undoAction.Text = "Undo";
 			this.undoAction.Click += new System.EventHandler(this.undoAction_Click);
 			// 
@@ -211,7 +221,7 @@ namespace TextEditor.Editors
 			// 
 			this.redoAction.Name = "redoAction";
 			this.redoAction.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-			this.redoAction.Size = new System.Drawing.Size(180, 22);
+			this.redoAction.Size = new System.Drawing.Size(144, 22);
 			this.redoAction.Text = "Redo";
 			this.redoAction.Click += new System.EventHandler(this.redoAction_Click);
 			// 
@@ -238,7 +248,7 @@ namespace TextEditor.Editors
 			this.editorFontSize.Name = "editorFontSize";
 			this.editorFontSize.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.S)));
-			this.editorFontSize.Size = new System.Drawing.Size(180, 22);
+			this.editorFontSize.Size = new System.Drawing.Size(172, 22);
 			this.editorFontSize.Text = "Size";
 			this.editorFontSize.Click += new System.EventHandler(this.editorFontSize_Click);
 			// 
@@ -247,7 +257,7 @@ namespace TextEditor.Editors
 			this.editorFontFamily.Name = "editorFontFamily";
 			this.editorFontFamily.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.F)));
-			this.editorFontFamily.Size = new System.Drawing.Size(180, 22);
+			this.editorFontFamily.Size = new System.Drawing.Size(172, 22);
 			this.editorFontFamily.Text = "Family";
 			this.editorFontFamily.Click += new System.EventHandler(this.editorFontFamily_Click);
 			// 
@@ -305,6 +315,7 @@ namespace TextEditor.Editors
             this.toolStripSeparator1,
             this.currentWordWrap,
             this.toolStripSeparator2,
+            this.drpdwnSelectLanguage,
             this.currentLanguage});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 472);
 			this.toolStrip1.Name = "toolStrip1";
@@ -323,22 +334,106 @@ namespace TextEditor.Editors
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
 			this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
 			// 
-			// currentLanguage
+			// currentWordWrap
 			// 
-			this.currentLanguage.Name = "currentLanguage";
-			this.currentLanguage.Size = new System.Drawing.Size(49, 22);
-			this.currentLanguage.Text = "Custom";
+			this.currentWordWrap.Name = "currentWordWrap";
+			this.currentWordWrap.Size = new System.Drawing.Size(111, 22);
+			this.currentWordWrap.Text = "WordWrap: Inactive";
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
 			// 
-			// currentWordWrap
+			// currentLanguage
 			// 
-			this.currentWordWrap.Name = "currentWordWrap";
-			this.currentWordWrap.Size = new System.Drawing.Size(111, 22);
-			this.currentWordWrap.Text = "WordWrap: Inactive";
+			this.currentLanguage.Name = "currentLanguage";
+			this.currentLanguage.Size = new System.Drawing.Size(49, 22);
+			this.currentLanguage.Text = "Custom";
+			// 
+			// drpdwnSelectLanguage
+			// 
+			this.drpdwnSelectLanguage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.drpdwnSelectLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnlangCustom,
+            this.btnlangCSharp,
+            this.btnlangVisualBasic,
+            this.btnlangHTML,
+            this.btnlangXML,
+            this.btnlangSQL,
+            this.btnlangPHP,
+            this.btnlangJS,
+            this.btnlangLua});
+			this.drpdwnSelectLanguage.Image = ((System.Drawing.Image)(resources.GetObject("drpdwnSelectLanguage.Image")));
+			this.drpdwnSelectLanguage.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.drpdwnSelectLanguage.Name = "drpdwnSelectLanguage";
+			this.drpdwnSelectLanguage.Size = new System.Drawing.Size(106, 22);
+			this.drpdwnSelectLanguage.Text = "Select Language";
+			// 
+			// btnlangJS
+			// 
+			this.btnlangJS.Name = "btnlangJS";
+			this.btnlangJS.Size = new System.Drawing.Size(180, 22);
+			this.btnlangJS.Text = "JS";
+			this.btnlangJS.Click += new System.EventHandler(this.btnlangJS_Click);
+			// 
+			// btnlangXML
+			// 
+			this.btnlangXML.Name = "btnlangXML";
+			this.btnlangXML.Size = new System.Drawing.Size(180, 22);
+			this.btnlangXML.Text = "XML";
+			this.btnlangXML.Click += new System.EventHandler(this.btnlangXML_Click);
+			// 
+			// btnlangHTML
+			// 
+			this.btnlangHTML.Name = "btnlangHTML";
+			this.btnlangHTML.Size = new System.Drawing.Size(180, 22);
+			this.btnlangHTML.Text = "HTML";
+			this.btnlangHTML.Click += new System.EventHandler(this.btnlangHTML_Click);
+			// 
+			// btnlangVisualBasic
+			// 
+			this.btnlangVisualBasic.Name = "btnlangVisualBasic";
+			this.btnlangVisualBasic.Size = new System.Drawing.Size(180, 22);
+			this.btnlangVisualBasic.Text = "Visual Basic";
+			this.btnlangVisualBasic.Click += new System.EventHandler(this.btnlangVisualBasic_Click);
+			// 
+			// btnlangCSharp
+			// 
+			this.btnlangCSharp.Name = "btnlangCSharp";
+			this.btnlangCSharp.Size = new System.Drawing.Size(180, 22);
+			this.btnlangCSharp.Text = "CSharp";
+			this.btnlangCSharp.Click += new System.EventHandler(this.btnlangCSharp_Click);
+			// 
+			// btnlangCustom
+			// 
+			this.btnlangCustom.Checked = true;
+			this.btnlangCustom.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.btnlangCustom.Name = "btnlangCustom";
+			this.btnlangCustom.Size = new System.Drawing.Size(180, 22);
+			this.btnlangCustom.Text = "Custom";
+			this.btnlangCustom.Click += new System.EventHandler(this.btnlangCustom_Click);
+			// 
+			// btnlangPHP
+			// 
+			this.btnlangPHP.Name = "btnlangPHP";
+			this.btnlangPHP.Size = new System.Drawing.Size(180, 22);
+			this.btnlangPHP.Text = "PHP";
+			this.btnlangPHP.Click += new System.EventHandler(this.btnlangPHP_Click);
+			// 
+			// btnlangSQL
+			// 
+			this.btnlangSQL.Name = "btnlangSQL";
+			this.btnlangSQL.Size = new System.Drawing.Size(180, 22);
+			this.btnlangSQL.Text = "SQL";
+			this.btnlangSQL.Click += new System.EventHandler(this.btnlangSQL_Click);
+			// 
+			// btnlangLua
+			// 
+			this.btnlangLua.Name = "btnlangLua";
+			this.btnlangLua.Size = new System.Drawing.Size(180, 22);
+			this.btnlangLua.Text = "Lua";
+			this.btnlangLua.Click += new System.EventHandler(this.btnlangLua_Click);
 			// 
 			// CodeEditor
 			// 
@@ -396,5 +491,15 @@ namespace TextEditor.Editors
 		private System.Windows.Forms.ToolStripLabel currentLanguage;
 		private System.Windows.Forms.ToolStripLabel currentWordWrap;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripDropDownButton drpdwnSelectLanguage;
+		private System.Windows.Forms.ToolStripMenuItem btnlangCustom;
+		private System.Windows.Forms.ToolStripMenuItem btnlangCSharp;
+		private System.Windows.Forms.ToolStripMenuItem btnlangVisualBasic;
+		private System.Windows.Forms.ToolStripMenuItem btnlangHTML;
+		private System.Windows.Forms.ToolStripMenuItem btnlangXML;
+		private System.Windows.Forms.ToolStripMenuItem btnlangSQL;
+		private System.Windows.Forms.ToolStripMenuItem btnlangPHP;
+		private System.Windows.Forms.ToolStripMenuItem btnlangJS;
+		private System.Windows.Forms.ToolStripMenuItem btnlangLua;
 	}
 }

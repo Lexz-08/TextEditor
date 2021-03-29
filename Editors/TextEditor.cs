@@ -149,57 +149,62 @@ namespace TextEditor.Editors
 		}
 		private void newFile_Click(object sender, EventArgs e)
 		{
-			using (fileReader = new StreamReader(selectedFile))
+			if (selectedFile == string.Empty)
+				resetEditor();
+			else
 			{
-				bool condition = advancedTextEditor.Text == fileReader.ReadToEnd();
-
-				if (condition)
+				using (fileReader = new StreamReader(selectedFile))
 				{
-					resetEditor();
-				}
-				else if (!condition)
-				{
-					DialogResult userChoice1 = MessageBox.Show("Are you sure you'd like to start/create a new file without saving these changes?", "Continue Without Saving?",
-						MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+					bool condition = advancedTextEditor.Text == fileReader.ReadToEnd();
 
-					switch (userChoice1)
+					if (condition)
 					{
-						case DialogResult.Yes:
-							resetEditor();
-							break;
-						case DialogResult.No:
-							DialogResult userChoice2 = MessageBox.Show("Would you like to save the changes or save them to a new file?", "Save To Current or Make New File?",
-								MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+						resetEditor();
+					}
+					else if (!condition)
+					{
+						DialogResult userChoice1 = MessageBox.Show("Are you sure you'd like to start/create a new file without saving these changes?", "Continue Without Saving?",
+							MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-							switch (userChoice2)
-							{
-								case DialogResult.Yes:
-									using (fileWriter = new StreamWriter(selectedFile))
-									{
-										fileWriter.Write(advancedTextEditor.Text);
-										fileWriter.Close();
-									}
-									break;
-								case DialogResult.No:
-									using (SaveFileDialog sfd = new SaveFileDialog
-									{
-										Title = "Please choose the location and name for your new file...",
-										Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*",
-										FilterIndex = 0,
-									})
-									{
-										if (sfd.ShowDialog() == DialogResult.OK)
+						switch (userChoice1)
+						{
+							case DialogResult.Yes:
+								resetEditor();
+								break;
+							case DialogResult.No:
+								DialogResult userChoice2 = MessageBox.Show("Would you like to save the changes or save them to a new file?", "Save To Current or Make New File?",
+									MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+								switch (userChoice2)
+								{
+									case DialogResult.Yes:
+										using (fileWriter = new StreamWriter(selectedFile))
 										{
-											using (fileWriter = new StreamWriter(selectedFile))
+											fileWriter.Write(advancedTextEditor.Text);
+											fileWriter.Close();
+										}
+										break;
+									case DialogResult.No:
+										using (SaveFileDialog sfd = new SaveFileDialog
+										{
+											Title = "Please choose the location and name for your new file...",
+											Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*",
+											FilterIndex = 0,
+										})
+										{
+											if (sfd.ShowDialog() == DialogResult.OK)
 											{
-												fileWriter.Write(advancedTextEditor.Text);
-												fileWriter.Close();
+												using (fileWriter = new StreamWriter(selectedFile))
+												{
+													fileWriter.Write(advancedTextEditor.Text);
+													fileWriter.Close();
+												}
 											}
 										}
-									}
-									break;
-							}
-							break;
+										break;
+								}
+								break;
+						}
 					}
 				}
 			}
