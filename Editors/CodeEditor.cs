@@ -29,9 +29,36 @@ namespace TextEditor.Editors
 					advancedEditor.Font.Size);
 
 				currentWordWrap.Text = string.Format("WordWrap: {0}",
-					editorWordWrap.Checked ? "Active" : "Inactive");
+					editor_WordWrap ? "Active" : "Inactive");
 
 				currentLanguage.Text = string.Format("{0}", advancedEditor.Language);
+
+				if (showMenuItemsChecked)
+				{
+					editorWordWrap.Checked = editor_WordWrap;
+					btnlangCustom.Checked = lang_Custom;
+					btnlangCSharp.Checked = lang_CSharp;
+					btnlangVisualBasic.Checked = lang_VisualBasic;
+					btnlangHTML.Checked = lang_HTML;
+					btnlangXML.Checked = lang_XML;
+					btnlangSQL.Checked = lang_SQL;
+					btnlangPHP.Checked = lang_PHP;
+					btnlangJS.Checked = lang_JS;
+					btnlangLua.Checked = lang_Lua;
+				}
+				else if (!showMenuItemsChecked)
+				{
+					editorWordWrap.Checked = false;
+					btnlangCustom.Checked = false;
+					btnlangCSharp.Checked = false;
+					btnlangVisualBasic.Checked = false;
+					btnlangHTML.Checked = false;
+					btnlangXML.Checked = false;
+					btnlangSQL.Checked = false;
+					btnlangPHP.Checked = false;
+					btnlangJS.Checked = false;
+					btnlangLua.Checked = false;
+				}
 			};
 			t.Start();
 
@@ -48,6 +75,20 @@ namespace TextEditor.Editors
 		private string selectedFile = string.Empty;
 		private StreamReader fileReader;
 		private StreamWriter fileWriter;
+
+		private bool showMenuItemsChecked = true;
+		private bool
+			editor_WordWrap = false;
+		private bool
+			lang_Custom = true,
+			lang_CSharp = false,
+			lang_VisualBasic = false,
+			lang_HTML = false,
+			lang_XML = false,
+			lang_SQL = false,
+			lang_PHP = false,
+			lang_JS = false,
+			lang_Lua = false;
 
 		// file menu
 		private void openFile_Click(object sender, EventArgs e)
@@ -145,7 +186,26 @@ namespace TextEditor.Editors
 		private void newFile_Click(object sender, EventArgs e)
 		{
 			if (selectedFile == string.Empty)
-				resetEditor();
+			{
+				if (advancedEditor.Text == string.Empty)
+				{
+					resetEditor();
+				}
+				else if (advancedEditor.Text != string.Empty)
+				{
+					DialogResult userChoice = MessageBox.Show("Are you sure you'd like to start a new file without saving your changes?", "Start Anew Without Saving?",
+						MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+					if (userChoice == DialogResult.Yes)
+					{
+						resetEditor();
+					}
+					else if (userChoice == DialogResult.No)
+					{
+						saveFileAs_Click(sender, e);
+					}
+				}
+			}
 			else
 			{
 				using (fileReader = new StreamReader(selectedFile))
@@ -263,133 +323,170 @@ namespace TextEditor.Editors
 		// format menu
 		private void editorWordWrap_Click(object sender, EventArgs e)
 		{
-			advancedEditor.WordWrap = editorWordWrap.Checked;
+			editor_WordWrap = !editor_WordWrap;
+			advancedEditor.WordWrap = editor_WordWrap;
+		}
+
+		// menu button without children on dropdown
+		private void btnShowMnuItmChecked_Click(object sender, EventArgs e)
+		{
+			switch (btnShowMnuItmChecked.Text)
+			{
+				case "Show Menu Items Checked: ON":
+					btnShowMnuItmChecked.Text = "Show Menu Items Checked: OFF";
+					btnShowMnuItmChecked.Checked = false;
+					showMenuItemsChecked = false;
+					break;
+				case "Show Menu Items Checked: OFF":
+					btnShowMnuItmChecked.Text = "Show Menu Items Checked: ON";
+					btnShowMnuItmChecked.Checked = true;
+					showMenuItemsChecked = true;
+					break;
+			}
 		}
 
 		// menu at bottom of window
 		private void btnlangCustom_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = true;
-			btnlangCSharp.Checked = false;
-			btnlangVisualBasic.Checked = false;
-			btnlangHTML.Checked = false;
-			btnlangXML.Checked = false;
-			btnlangSQL.Checked = false;
-			btnlangPHP.Checked = false;
-			btnlangJS.Checked = false;
-			btnlangLua.Checked = false;
+			lang_Custom = !lang_Custom;
+
+			lang_Custom = true;
+			lang_CSharp = false;
+			lang_VisualBasic = false;
+			lang_HTML = false;
+			lang_XML = false;
+			lang_SQL = false;
+			lang_PHP = false;
+			lang_JS = false;
+			lang_Lua = false;
 
 			advancedEditor.Language = Language.Custom;
 		}
 		private void btnlangCSharp_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = false;
-			btnlangCSharp.Checked = true;
-			btnlangVisualBasic.Checked = false;
-			btnlangHTML.Checked = false;
-			btnlangXML.Checked = false;
-			btnlangSQL.Checked = false;
-			btnlangPHP.Checked = false;
-			btnlangJS.Checked = false;
-			btnlangLua.Checked = false;
+			lang_CSharp = !lang_CSharp;
+
+			lang_Custom = false;
+			lang_CSharp = true;
+			lang_VisualBasic = false;
+			lang_HTML = false;
+			lang_XML = false;
+			lang_SQL = false;
+			lang_PHP = false;
+			lang_JS = false;
+			lang_Lua = false;
 
 			advancedEditor.Language = Language.CSharp;
 		}
 		private void btnlangVisualBasic_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = false;
-			btnlangCSharp.Checked = false;
-			btnlangVisualBasic.Checked = true;
-			btnlangHTML.Checked = false;
-			btnlangXML.Checked = false;
-			btnlangSQL.Checked = false;
-			btnlangPHP.Checked = false;
-			btnlangJS.Checked = false;
-			btnlangLua.Checked = false;
+			lang_VisualBasic = !lang_VisualBasic;
+
+			lang_Custom = false;
+			lang_CSharp = false;
+			lang_VisualBasic = true;
+			lang_HTML = false;
+			lang_XML = false;
+			lang_SQL = false;
+			lang_PHP = false;
+			lang_JS = false;
+			lang_Lua = false;
 
 			advancedEditor.Language = Language.VB;
 		}
 		private void btnlangHTML_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = false;
-			btnlangCSharp.Checked = false;
-			btnlangVisualBasic.Checked = false;
-			btnlangHTML.Checked = true;
-			btnlangXML.Checked = false;
-			btnlangSQL.Checked = false;
-			btnlangPHP.Checked = false;
-			btnlangJS.Checked = false;
-			btnlangLua.Checked = false;
+			lang_HTML = !lang_HTML;
+
+			lang_Custom = false;
+			lang_CSharp = false;
+			lang_VisualBasic = false;
+			lang_HTML = true;
+			lang_XML = false;
+			lang_SQL = false;
+			lang_PHP = false;
+			lang_JS = false;
+			lang_Lua = false;
 
 			advancedEditor.Language = Language.HTML;
 		}
 		private void btnlangXML_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = false;
-			btnlangCSharp.Checked = false;
-			btnlangVisualBasic.Checked = false;
-			btnlangHTML.Checked = false;
-			btnlangXML.Checked = true;
-			btnlangSQL.Checked = false;
-			btnlangPHP.Checked = false;
-			btnlangJS.Checked = false;
-			btnlangLua.Checked = false;
+			lang_XML = !lang_XML;
+
+			lang_Custom = false;
+			lang_CSharp = false;
+			lang_VisualBasic = false;
+			lang_HTML = false;
+			lang_XML = true;
+			lang_SQL = false;
+			lang_PHP = false;
+			lang_JS = false;
+			lang_Lua = false;
 
 			advancedEditor.Language = Language.XML;
 		}
 		private void btnlangSQL_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = false;
-			btnlangCSharp.Checked = false;
-			btnlangVisualBasic.Checked = false;
-			btnlangHTML.Checked = false;
-			btnlangXML.Checked = false;
-			btnlangSQL.Checked = true;
-			btnlangPHP.Checked = false;
-			btnlangJS.Checked = false;
-			btnlangLua.Checked = false;
+			lang_SQL = !lang_SQL;
+
+			lang_Custom = false;
+			lang_CSharp = false;
+			lang_VisualBasic = false;
+			lang_HTML = false;
+			lang_XML = false;
+			lang_SQL = true;
+			lang_PHP = false;
+			lang_JS = false;
+			lang_Lua = false;
 
 			advancedEditor.Language = Language.SQL;
 		}
 		private void btnlangPHP_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = false;
-			btnlangCSharp.Checked = false;
-			btnlangVisualBasic.Checked = false;
-			btnlangHTML.Checked = false;
-			btnlangXML.Checked = false;
-			btnlangSQL.Checked = false;
-			btnlangPHP.Checked = true;
-			btnlangJS.Checked = false;
-			btnlangLua.Checked = false;
+			lang_PHP = !lang_PHP;
+
+			lang_Custom = false;
+			lang_CSharp = false;
+			lang_VisualBasic = false;
+			lang_HTML = false;
+			lang_XML = false;
+			lang_SQL = false;
+			lang_PHP = true;
+			lang_JS = false;
+			lang_Lua = false;
 
 			advancedEditor.Language = Language.PHP;
 		}
 		private void btnlangJS_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = false;
-			btnlangCSharp.Checked = false;
-			btnlangVisualBasic.Checked = false;
-			btnlangHTML.Checked = false;
-			btnlangXML.Checked = false;
-			btnlangSQL.Checked = false;
-			btnlangPHP.Checked = false;
-			btnlangJS.Checked = true;
-			btnlangLua.Checked = false;
+			lang_JS = !lang_JS;
+
+			lang_Custom = false;
+			lang_CSharp = false;
+			lang_VisualBasic = false;
+			lang_HTML = false;
+			lang_XML = false;
+			lang_SQL = false;
+			lang_PHP = false;
+			lang_JS = true;
+			lang_Lua = false;
 
 			advancedEditor.Language = Language.JS;
 		}
 		private void btnlangLua_Click(object sender, EventArgs e)
 		{
-			btnlangCustom.Checked = false;
-			btnlangCSharp.Checked = false;
-			btnlangVisualBasic.Checked = false;
-			btnlangHTML.Checked = false;
-			btnlangXML.Checked = false;
-			btnlangSQL.Checked = false;
-			btnlangPHP.Checked = false;
-			btnlangJS.Checked = false;
-			btnlangLua.Checked = true;
+			lang_JS = !lang_JS;
+
+			lang_Custom = false;
+			lang_CSharp = false;
+			lang_VisualBasic = false;
+			lang_HTML = false;
+			lang_XML = false;
+			lang_SQL = false;
+			lang_PHP = false;
+			lang_JS = false;
+			lang_Lua = true;
 
 			advancedEditor.Language = Language.Lua;
 		}

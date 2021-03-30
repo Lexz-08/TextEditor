@@ -30,13 +30,26 @@ namespace TextEditor.Editors
 					advancedTextEditor.Font.Size);
 
 				currentHRuler.Text = string.Format("HRuler: {0}",
-					editorHRuler.Checked ? "ON" : "OFF");
+					editor_HRuler ? "ON" : "OFF");
 
 				currentShowTabsSpaces.Text = string.Format("Tabs / Spaces: {0}",
-					editorVisibleSpacesTabs.Checked ? "Visible" : "Not Visible");
+					editor_VisibleSpacesTabs ? "Visible" : "Not Visible");
 
 				currentSelectedLineVisible.Text = string.Format("Current Line: {0}",
-					editorShowCurrentLine.Checked ? "Marked" : "Not Marked");
+					editor_ShowCurrentLine ? "Marked" : "Not Marked");
+
+				if (showMenuItemChecked)
+				{
+					editorHRuler.Checked = editor_HRuler;
+					editorVisibleSpacesTabs.Checked = editor_VisibleSpacesTabs;
+					editorShowCurrentLine.Checked = editor_ShowCurrentLine;
+				}
+				else
+				{
+					editorHRuler.Checked = false;
+					editorVisibleSpacesTabs.Checked = false;
+					editorShowCurrentLine.Checked = false;
+				}
 			};
 			t.Start();
 
@@ -53,6 +66,12 @@ namespace TextEditor.Editors
 		private string selectedFile = string.Empty;
 		private StreamReader fileReader;
 		private StreamWriter fileWriter;
+
+		private bool showMenuItemChecked = true;
+		private bool
+			editor_HRuler = false,
+			editor_VisibleSpacesTabs = false,
+			editor_ShowCurrentLine = false;
 
 		// file menu
 		private void openFile_Click(object sender, EventArgs e)
@@ -150,7 +169,26 @@ namespace TextEditor.Editors
 		private void newFile_Click(object sender, EventArgs e)
 		{
 			if (selectedFile == string.Empty)
-				resetEditor();
+			{
+				if (advancedTextEditor.Text == string.Empty)
+				{
+					resetEditor();
+				}
+				else if (advancedTextEditor.Text != string.Empty)
+				{
+					DialogResult userChoice = MessageBox.Show("Are you sure you'd like to start a new file without saving your changes?", "Start Anew Without Saving?",
+						MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+					if (userChoice == DialogResult.Yes)
+					{
+						resetEditor();
+					}
+					else if (userChoice == DialogResult.No)
+					{
+						saveFileAs_Click(sender, e);
+					}
+				}
+			}
 			else
 			{
 				using (fileReader = new StreamReader(selectedFile))
@@ -256,18 +294,41 @@ namespace TextEditor.Editors
 		// format menu -> advanced editor
 		private void editorHRuler_Click(object sender, EventArgs e)
 		{
-			advancedTextEditor.ShowHRuler = editorHRuler.Checked;
+			editor_HRuler = !editor_HRuler;
+			advancedTextEditor.ShowHRuler = editor_HRuler;
 		}
+
 		private void editorVisibleSpacesTabs_Click(object sender, EventArgs e)
 		{
-			advancedTextEditor.ShowTabs = editorVisibleSpacesTabs.Checked;
-			advancedTextEditor.ShowSpaces = editorVisibleSpacesTabs.Checked;
+			editor_VisibleSpacesTabs = !editor_VisibleSpacesTabs;
+			advancedTextEditor.ShowTabs = editor_VisibleSpacesTabs;
+			advancedTextEditor.ShowSpaces = editor_VisibleSpacesTabs;
 		}
 		private void editorShowCurrentLine_Click(object sender, EventArgs e)
 		{
-			if (editorShowCurrentLine.Checked)
+			editor_ShowCurrentLine = !editor_ShowCurrentLine;
+
+			if (editor_ShowCurrentLine)
 				advancedTextEditor.LineViewerStyle = LineViewerStyle.FullRow;
 			else advancedTextEditor.LineViewerStyle = LineViewerStyle.None;
+		}
+
+		// menu button without children on dropdown
+		private void btnShowMnuItmChecked_Click(object sender, EventArgs e)
+		{
+			switch (btnShowMnuItmChecked.Text)
+			{
+				case "Show Menu Items Checked: ON":
+					showMenuItemChecked = false;
+					btnShowMnuItmChecked.Checked = false;
+					btnShowMnuItmChecked.Text = "Show Menu Items Checked: OFF";
+					break;
+				case "Show Menu Items Checked: OFF":
+					showMenuItemChecked = true;
+					btnShowMnuItmChecked.Checked = true;
+					btnShowMnuItmChecked.Text = "Show Menu Items Checked: ON";
+					break;
+			}
 		}
 	}
 }

@@ -60,6 +60,7 @@ namespace TextEditor.Editors
 			this.currentShowTabsSpaces = new System.Windows.Forms.ToolStripLabel();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.currentSelectedLineVisible = new System.Windows.Forms.ToolStripLabel();
+			this.btnShowMnuItmChecked = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -70,7 +71,8 @@ namespace TextEditor.Editors
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenu,
             this.editMenu,
-            this.formatMenu});
+            this.formatMenu,
+            this.btnShowMnuItmChecked});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(777, 24);
@@ -319,6 +321,13 @@ namespace TextEditor.Editors
 			this.currentSelectedLineVisible.Size = new System.Drawing.Size(141, 22);
 			this.currentSelectedLineVisible.Text = "Current Line: Not Marked";
 			// 
+			// btnShowMnuItmChecked
+			// 
+			this.btnShowMnuItmChecked.Name = "btnShowMnuItmChecked";
+			this.btnShowMnuItmChecked.Size = new System.Drawing.Size(187, 20);
+			this.btnShowMnuItmChecked.Text = "Show Menu Items Checked: ON";
+			this.btnShowMnuItmChecked.Click += new System.EventHandler(this.btnShowMnuItmChecked_Click);
+			// 
 			// TextEditor
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -376,5 +385,6 @@ namespace TextEditor.Editors
 		private System.Windows.Forms.ToolStripLabel currentSelectedLineVisible;
 		private System.Windows.Forms.ToolStripLabel currentShowTabsSpaces;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+		private System.Windows.Forms.ToolStripMenuItem btnShowMnuItmChecked;
 	}
 }
