@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/development-undergoing-brightgreen)
-![](https://img.shields.io/badge/version-0.1-yellow)
+![](https://img.shields.io/badge/version-0.2-yellow)
 ![](https://img.shields.io/badge/release-stable-informational)
 
 ## TextEditor
