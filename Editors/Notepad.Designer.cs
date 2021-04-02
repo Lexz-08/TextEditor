@@ -327,7 +327,6 @@ namespace TextEditor.Editors
 
 		private System.Windows.Forms.ToolStrip noteFormatMenu;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
-		private System.Windows.Forms.RichTextBox editor;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ListBox notes;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -349,5 +348,6 @@ namespace TextEditor.Editors
 		private System.Windows.Forms.ToolStripButton btnStrikethroughText;
 		private System.Windows.Forms.ToolStripButton btnSaveNote;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+		public System.Windows.Forms.RichTextBox editor;
 	}
 }

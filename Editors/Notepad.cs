@@ -1,5 +1,4 @@
-﻿using AMS.Profile;
-using System;
+﻿using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -43,7 +42,9 @@ namespace TextEditor.Editors
 		private void NewNote(string noteTitle)
 		{
 			notes.Items.Add(noteTitle);
-			File.Create(Application.StartupPath + "\\Notes\\" + noteTitle + ".rtf").Close();
+			editor.Enabled = true;
+			editor.SaveFile(Application.StartupPath + "\\Notes\\" + noteTitle + ".rtf", RichTextBoxStreamType.RichText);
+			editor.Enabled = false;
 		}
 
 		private void btnCreateNewNote_Click(object sender, EventArgs e)
