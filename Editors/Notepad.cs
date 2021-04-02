@@ -54,6 +54,7 @@ namespace TextEditor.Editors
 		private void btnDeleteSelectedNote_Click(object sender, EventArgs e)
 		{
 			notes.Items.RemoveAt(activeNoteIndex);
+			File.Delete(Application.StartupPath + "\\Notes\\" + notes.Items[activeNoteIndex].ToString() + ".rtf");
 			if (notes.Items.Count > 0) activeNoteIndex = 0;
 			else if (notes.Items.Count < 1) activeNoteIndex = -1;
 			editor.Enabled = false;
