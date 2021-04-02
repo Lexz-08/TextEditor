@@ -51,6 +51,7 @@ namespace TextEditor.Editors
 			this.editorHRuler = new System.Windows.Forms.ToolStripMenuItem();
 			this.editorVisibleSpacesTabs = new System.Windows.Forms.ToolStripMenuItem();
 			this.editorShowCurrentLine = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnShowMnuItmChecked = new System.Windows.Forms.ToolStripMenuItem();
 			this.advancedTextEditor = new ICSharpCode.TextEditor.TextEditorControl();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.currentFont = new System.Windows.Forms.ToolStripLabel();
@@ -60,7 +61,6 @@ namespace TextEditor.Editors
 			this.currentShowTabsSpaces = new System.Windows.Forms.ToolStripLabel();
 			this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
 			this.currentSelectedLineVisible = new System.Windows.Forms.ToolStripLabel();
-			this.btnShowMnuItmChecked = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -252,6 +252,13 @@ namespace TextEditor.Editors
 			this.editorShowCurrentLine.Text = "Display Selected Line";
 			this.editorShowCurrentLine.Click += new System.EventHandler(this.editorShowCurrentLine_Click);
 			// 
+			// btnShowMnuItmChecked
+			// 
+			this.btnShowMnuItmChecked.Name = "btnShowMnuItmChecked";
+			this.btnShowMnuItmChecked.Size = new System.Drawing.Size(187, 20);
+			this.btnShowMnuItmChecked.Text = "Show Menu Items Checked: ON";
+			this.btnShowMnuItmChecked.Click += new System.EventHandler(this.btnShowMnuItmChecked_Click);
+			// 
 			// advancedTextEditor
 			// 
 			this.advancedTextEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -321,13 +328,6 @@ namespace TextEditor.Editors
 			this.currentSelectedLineVisible.Size = new System.Drawing.Size(141, 22);
 			this.currentSelectedLineVisible.Text = "Current Line: Not Marked";
 			// 
-			// btnShowMnuItmChecked
-			// 
-			this.btnShowMnuItmChecked.Name = "btnShowMnuItmChecked";
-			this.btnShowMnuItmChecked.Size = new System.Drawing.Size(187, 20);
-			this.btnShowMnuItmChecked.Text = "Show Menu Items Checked: ON";
-			this.btnShowMnuItmChecked.Click += new System.EventHandler(this.btnShowMnuItmChecked_Click);
-			// 
 			// TextEditor
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -336,6 +336,7 @@ namespace TextEditor.Editors
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.advancedTextEditor);
 			this.Controls.Add(this.menuStrip1);
+			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("Roboto", 14F);
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;

@@ -69,6 +69,12 @@
     <Compile Include="Editors\CodeEditor.Designer.cs">
       <DependentUpon>CodeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Editors\Notepad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editors\Notepad.Designer.cs">
+      <DependentUpon>Notepad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editors\TextEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\CodeEditor.resx">
       <DependentUpon>CodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Editors\Notepad.resx">
+      <DependentUpon>Notepad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Editors\TextEditor.resx">
       <DependentUpon>TextEditor.cs</DependentUpon>
@@ -139,6 +148,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="electron_1.ico" />
+    <None Include="Resources\document-save.png" />
+    <None Include="Resources\format-text-underline.png" />
+    <None Include="Resources\format-text-strikethrough.png" />
+    <None Include="Resources\format-text-italic.png" />
+    <None Include="Resources\format-text-bold.png" />
+    <None Include="Resources\edit-undo.png" />
+    <None Include="Resources\edit-redo.png" />
+    <None Include="Resources\edit-paste.png" />
+    <None Include="Resources\edit-cut.png" />
+    <None Include="Resources\edit-copy.png" />
+    <None Include="Resources\document-new.png" />
     <None Include="Resources\icons8_code.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -56,23 +56,27 @@ namespace TextEditor
 			Visible = false;
 			new Editors.TextEditor(this).Show();
 
-			closeWindowSelection.Text = "CLOSE";
-			closeWindowSelection.Location = new Point(239, 194);
+			ModifyCANCELButton();
 		}
 		private void useCodeEditor_Click(object sender, EventArgs e)
 		{
 			Visible = false;
 			new CodeEditor(this).Show();
 
-			closeWindowSelection.Text = "CLOSE";
-			closeWindowSelection.Location = new Point(239, 194);
+			ModifyCANCELButton();
 		}
 		private void useNotepad_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Unfortunately this editor type has not been developed yet.\n" +
-				"I will not be able to work on it until I have fully finished the other editors.\n\n" +
-				"Sorry! Thank you for understanding though!", "Editor Not Released and Coming Soon",
-				MessageBoxButtons.OK, MessageBoxIcon.Information);
+			Visible = false;
+			new Notepad(this).Show();
+
+			ModifyCANCELButton();
+		}
+
+		private void ModifyCANCELButton()
+		{
+			closeWindowSelection.Text = "CLOSE";
+			closeWindowSelection.Location = new Point(239, 194);
 		}
 	}
 }

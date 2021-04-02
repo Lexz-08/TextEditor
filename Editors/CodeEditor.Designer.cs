@@ -54,6 +54,7 @@ namespace TextEditor.Editors
 			this.editorFontSize = new System.Windows.Forms.ToolStripMenuItem();
 			this.editorFontFamily = new System.Windows.Forms.ToolStripMenuItem();
 			this.editorWordWrap = new System.Windows.Forms.ToolStripMenuItem();
+			this.btnShowMnuItmChecked = new System.Windows.Forms.ToolStripMenuItem();
 			this.advancedEditor = new FastColoredTextBoxNS.FastColoredTextBox();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
 			this.currentFont = new System.Windows.Forms.ToolStripLabel();
@@ -71,7 +72,6 @@ namespace TextEditor.Editors
 			this.btnlangJS = new System.Windows.Forms.ToolStripMenuItem();
 			this.btnlangLua = new System.Windows.Forms.ToolStripMenuItem();
 			this.currentLanguage = new System.Windows.Forms.ToolStripLabel();
-			this.btnShowMnuItmChecked = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.advancedEditor)).BeginInit();
 			this.toolStrip1.SuspendLayout();
@@ -273,6 +273,13 @@ namespace TextEditor.Editors
 			this.editorWordWrap.Text = "Word Wrap";
 			this.editorWordWrap.Click += new System.EventHandler(this.editorWordWrap_Click);
 			// 
+			// btnShowMnuItmChecked
+			// 
+			this.btnShowMnuItmChecked.Name = "btnShowMnuItmChecked";
+			this.btnShowMnuItmChecked.Size = new System.Drawing.Size(187, 20);
+			this.btnShowMnuItmChecked.Text = "Show Menu Items Checked: ON";
+			this.btnShowMnuItmChecked.Click += new System.EventHandler(this.btnShowMnuItmChecked_Click);
+			// 
 			// advancedEditor
 			// 
 			this.advancedEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -371,63 +378,63 @@ namespace TextEditor.Editors
 			this.btnlangCustom.Checked = true;
 			this.btnlangCustom.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.btnlangCustom.Name = "btnlangCustom";
-			this.btnlangCustom.Size = new System.Drawing.Size(180, 22);
+			this.btnlangCustom.Size = new System.Drawing.Size(135, 22);
 			this.btnlangCustom.Text = "Custom";
 			this.btnlangCustom.Click += new System.EventHandler(this.btnlangCustom_Click);
 			// 
 			// btnlangCSharp
 			// 
 			this.btnlangCSharp.Name = "btnlangCSharp";
-			this.btnlangCSharp.Size = new System.Drawing.Size(180, 22);
+			this.btnlangCSharp.Size = new System.Drawing.Size(135, 22);
 			this.btnlangCSharp.Text = "CSharp";
 			this.btnlangCSharp.Click += new System.EventHandler(this.btnlangCSharp_Click);
 			// 
 			// btnlangVisualBasic
 			// 
 			this.btnlangVisualBasic.Name = "btnlangVisualBasic";
-			this.btnlangVisualBasic.Size = new System.Drawing.Size(180, 22);
+			this.btnlangVisualBasic.Size = new System.Drawing.Size(135, 22);
 			this.btnlangVisualBasic.Text = "Visual Basic";
 			this.btnlangVisualBasic.Click += new System.EventHandler(this.btnlangVisualBasic_Click);
 			// 
 			// btnlangHTML
 			// 
 			this.btnlangHTML.Name = "btnlangHTML";
-			this.btnlangHTML.Size = new System.Drawing.Size(180, 22);
+			this.btnlangHTML.Size = new System.Drawing.Size(135, 22);
 			this.btnlangHTML.Text = "HTML";
 			this.btnlangHTML.Click += new System.EventHandler(this.btnlangHTML_Click);
 			// 
 			// btnlangXML
 			// 
 			this.btnlangXML.Name = "btnlangXML";
-			this.btnlangXML.Size = new System.Drawing.Size(180, 22);
+			this.btnlangXML.Size = new System.Drawing.Size(135, 22);
 			this.btnlangXML.Text = "XML";
 			this.btnlangXML.Click += new System.EventHandler(this.btnlangXML_Click);
 			// 
 			// btnlangSQL
 			// 
 			this.btnlangSQL.Name = "btnlangSQL";
-			this.btnlangSQL.Size = new System.Drawing.Size(180, 22);
+			this.btnlangSQL.Size = new System.Drawing.Size(135, 22);
 			this.btnlangSQL.Text = "SQL";
 			this.btnlangSQL.Click += new System.EventHandler(this.btnlangSQL_Click);
 			// 
 			// btnlangPHP
 			// 
 			this.btnlangPHP.Name = "btnlangPHP";
-			this.btnlangPHP.Size = new System.Drawing.Size(180, 22);
+			this.btnlangPHP.Size = new System.Drawing.Size(135, 22);
 			this.btnlangPHP.Text = "PHP";
 			this.btnlangPHP.Click += new System.EventHandler(this.btnlangPHP_Click);
 			// 
 			// btnlangJS
 			// 
 			this.btnlangJS.Name = "btnlangJS";
-			this.btnlangJS.Size = new System.Drawing.Size(180, 22);
+			this.btnlangJS.Size = new System.Drawing.Size(135, 22);
 			this.btnlangJS.Text = "JS";
 			this.btnlangJS.Click += new System.EventHandler(this.btnlangJS_Click);
 			// 
 			// btnlangLua
 			// 
 			this.btnlangLua.Name = "btnlangLua";
-			this.btnlangLua.Size = new System.Drawing.Size(180, 22);
+			this.btnlangLua.Size = new System.Drawing.Size(135, 22);
 			this.btnlangLua.Text = "Lua";
 			this.btnlangLua.Click += new System.EventHandler(this.btnlangLua_Click);
 			// 
@@ -436,13 +443,6 @@ namespace TextEditor.Editors
 			this.currentLanguage.Name = "currentLanguage";
 			this.currentLanguage.Size = new System.Drawing.Size(49, 22);
 			this.currentLanguage.Text = "Custom";
-			// 
-			// btnShowMnuItmChecked
-			// 
-			this.btnShowMnuItmChecked.Name = "btnShowMnuItmChecked";
-			this.btnShowMnuItmChecked.Size = new System.Drawing.Size(187, 20);
-			this.btnShowMnuItmChecked.Text = "Show Menu Items Checked: ON";
-			this.btnShowMnuItmChecked.Click += new System.EventHandler(this.btnShowMnuItmChecked_Click);
 			// 
 			// CodeEditor
 			// 
@@ -453,6 +453,7 @@ namespace TextEditor.Editors
 			this.Controls.Add(this.toolStrip1);
 			this.Controls.Add(this.advancedEditor);
 			this.Controls.Add(this.menuStrip1);
+			this.DoubleBuffered = true;
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "CodeEditor";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
