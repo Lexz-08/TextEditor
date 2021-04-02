@@ -7,8 +7,9 @@
 Unofficially the most advanced text/code editing application/program I have ever made. Completely free just like every other thing I program.
 
 ### Editors Available
-  - Text Editor (Basic Text Editing)
-  - Code Editor (Basic Code Editing)
+  - Text Editor
+  - Code Editor
+  - Notepad
 
 ### Features Coming Soon
   - Settings (To save and load your changes instead of the constant default values)
