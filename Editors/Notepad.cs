@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using TextEditor.Properties;
 using Transitions;
@@ -17,54 +19,95 @@ namespace TextEditor.Editors
 
 			Icon = Icon.FromHandle(Resources.notepadImage.GetHicon());
 
-			Directory.CreateDirectory(Application.StartupPath + "\\Notes\\");
+			ListNotes();
 
-			string[] noteFiles = Directory.GetFiles(Application.StartupPath + "\\Notes\\");
-			string[] names = new string[noteFiles.Length];
-			
-			for (int i = 0; i < noteFiles.Length; i++)
+			#region Random String Generation
+
+			for (int z = 0; z < 500; z++)
 			{
-				names[i] = Path.GetFileNameWithoutExtension(noteFiles[i]);
+				Random rnd = new Random();
+				string randomNoteName = string.Empty;
+				const string chars = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
+				randomNoteName = new string(Enumerable.Repeat(chars, 32).Select(s => s[rnd.Next(s.Length)]).ToArray());
+				randomNoteNames.Add(randomNoteName);
 			}
 
-			notes.Items.AddRange(names);
+			#endregion
 		}
 
 		private EditorSelectionWindow selectionWindow;
-		private int noteId = 1;
-		private int activeNoteIndex = 0;
+		private readonly string baseNotePath = Application.StartupPath + "\\Notes";
+		private List<string> randomNoteNames = new List<string>();
+		private string currentNote = string.Empty;
 
 		private void Notepad_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			selectionWindow.Visible = true;
 		}
 
-		private void NewNote(string noteTitle)
+		private string RandomNoteName()
 		{
-			notes.Items.Add(noteTitle);
-			editor.Enabled = true;
-			editor.SaveFile(Application.StartupPath + "\\Notes\\" + noteTitle + ".rtf", RichTextBoxStreamType.RichText);
-			editor.Enabled = false;
+			return randomNoteNames[new Random().Next(-1, randomNoteNames.Count + 1)];
 		}
 
+		private void ListDirectory(TreeView treeView, string path)
+		{
+			treeView.Nodes.Clear();
+
+			Stack<TreeNode> stack = new Stack<TreeNode>();
+			DirectoryInfo rootDirectory = new DirectoryInfo(path);
+			TreeNode node = new TreeNode(rootDirectory.Name) { Tag = rootDirectory };
+			stack.Push(node);
+
+			while (stack.Count > 0)
+			{
+				TreeNode currentNode = stack.Pop();
+				DirectoryInfo directoryInfo = (DirectoryInfo)currentNode.Tag;
+				foreach (DirectoryInfo directory in directoryInfo.GetDirectories())
+				{
+					TreeNode childDirectoryNode = new TreeNode(directory.Name) { Tag = directory };
+					currentNode.Nodes.Add(childDirectoryNode);
+					stack.Push(childDirectoryNode);
+				}
+				foreach (FileInfo file in directoryInfo.GetFiles())
+					currentNode.Nodes.Add(new TreeNode(file.Name));
+			}
+
+			treeView.Nodes.Add(node);
+		}
+		private TreeNode GetCurrentNode()
+		{
+			return notes.SelectedNode;
+		}
+		private void ListNotes()
+		{
+			ListDirectory(notes, baseNotePath);
+		}
+		private void NewNote(string noteTitle, bool openEditor = false)
+		{
+			editor.Enabled = true;
+			editor.Text = string.Empty;
+			editor.Enabled = false;
+			File.Create(baseNotePath + "\\" + noteTitle + ".rtf").Close();
+			editor.Enabled = true;
+			editor.SaveFile(baseNotePath + "\\" + noteTitle + ".rtf", RichTextBoxStreamType.RichText);
+			editor.Enabled = false;
+			if (openEditor)
+			{
+				editor.Enabled = true;
+				editor.LoadFile(baseNotePath + "\\" + noteTitle + ".rtf", RichTextBoxStreamType.RichText);
+			}
+			ListNotes();
+		}
 		private void btnCreateNewNote_Click(object sender, EventArgs e)
 		{
-			NewNote(txtNoteTitle.Text);
+			NewNote(txtNoteTitle.Text, false);
 		}
-		private void btnDeleteSelectedNote_Click(object sender, EventArgs e)
-		{
-			notes.Items.RemoveAt(activeNoteIndex);
-			File.Delete(Application.StartupPath + "\\Notes\\" + notes.Items[activeNoteIndex].ToString() + ".rtf");
-			if (notes.Items.Count > 0) activeNoteIndex = 0;
-			else if (notes.Items.Count < 1) activeNoteIndex = -1;
-			editor.Enabled = false;
-		}
-
 		private void btnNewNote_Click(object sender, EventArgs e)
 		{
-			NewNote("New Note " + noteId);
-			noteId++;
+			NewNote(RandomNoteName(), false);
 		}
+
 		private void btnCutText_Click(object sender, EventArgs e)
 		{
 			editor.Cut();
@@ -128,20 +171,6 @@ namespace TextEditor.Editors
 			ToggleFontStyle(out newFont, FontStyle.Strikeout);
 			editor.SelectionFont = newFont;
 		}
-		private void notes_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			if (notes.Items.Count > 0)
-			{
-				string noteFile = Application.StartupPath + "\\Notes\\" + notes.Items[activeNoteIndex].ToString() + ".rtf";
-
-				editor.Enabled = true;
-				editor.LoadFile(noteFile, RichTextBoxStreamType.RichText);
-			}
-			else if (notes.Items.Count < 1)
-			{
-				return;
-			}
-		}
 
 		private void toolStripButton1_Click(object sender, EventArgs e)
 		{
@@ -171,9 +200,61 @@ namespace TextEditor.Editors
 		}
 		private void btnSaveNote_Click(object sender, EventArgs e)
 		{
-			string noteFile = Application.StartupPath + "\\Notes\\" + notes.Items[activeNoteIndex].ToString() + ".rtf";
+			editor.SaveFile(currentNote, RichTextBoxStreamType.RichText);
+			editor.Text = string.Empty;
+			editor.Enabled = false;
+		}
+		private void SelectNote()
+		{
+			if (GetCurrentNode().Text.Contains(".rtf"))
+			{
+				currentNote = baseNotePath + "\\" + GetCurrentNode().Text;
+				editor.Enabled = true;
+				editor.LoadFile(currentNote, RichTextBoxStreamType.RichText);
+				deleteCurrentNote.Enabled = true;
+				toolStripSeparator2.Visible = true;
+				deleteCurrentNote.Visible = true;
+			}
+			else
+			{
+				editor.Text = string.Empty;
+				editor.Enabled = false;
+				deleteCurrentNote.Enabled = false;
+			}
+		}
+		private void notes_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)(Keys.Enter | Keys.Return))
+			{
+				SelectNote();
+			}
+		}
+		private void deleteCurrentNote_Click(object sender, EventArgs e)
+		{
+			if (GetCurrentNode().Text == Path.GetFileName(currentNote))
+			{
+				GetCurrentNode().Remove();
+				File.Delete(currentNote);
 
-			editor.SaveFile(noteFile, RichTextBoxStreamType.RichText);
+				deleteCurrentNote.Enabled = false;
+
+				toolStripSeparator2.Visible = false;
+				deleteCurrentNote.Visible = false;
+			}
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("" +
+				"- The buttons at the top with the 'paper' icons and the 'A' icons are used for basic text editing.\n\n" +
+				"- Click the double-arrow button on the far left side of the menu strip at the top to toggle the 'notes menu'.\n\n" +
+				"- Use the arrow keys on your keyboard to navigate the TreeView.\n\n" +
+				"- Use up-arrow and down-arrow to go up down on the whole list.\n\n" +
+				"- Use the left-arrow to close a list, and the right-arrow to open a list.\n\n" +
+				"- Use 'Enter' or 'Return' on your keyboard to select a note to open it.\n\n" +
+				"- Use the 'Save Note' button to save your changes.\n\n" +
+				"- Creating a folder inside the 'Notes' folder will not allow you to access those notes in the new folder.\n\n" +
+				"- All notes are created and accessed in only the 'Notes' folder, any other folders added and containing other notes will render those new notes 'inaccessible'.", "How To Use the NOTEPAD", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 	}
 }

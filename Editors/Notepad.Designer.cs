@@ -48,13 +48,15 @@ namespace TextEditor.Editors
 			this.btnItalicText = new System.Windows.Forms.ToolStripButton();
 			this.btnUnderlineText = new System.Windows.Forms.ToolStripButton();
 			this.btnStrikethroughText = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.deleteCurrentNote = new System.Windows.Forms.ToolStripButton();
 			this.editor = new System.Windows.Forms.RichTextBox();
-			this.notes = new System.Windows.Forms.ListBox();
 			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.menuNewNote = new System.Windows.Forms.ToolStripMenuItem();
 			this.txtNoteTitle = new System.Windows.Forms.ToolStripTextBox();
 			this.btnCreateNewNote = new System.Windows.Forms.ToolStripMenuItem();
-			this.btnDeleteSelectedNote = new System.Windows.Forms.ToolStripMenuItem();
+			this.notes = new System.Windows.Forms.TreeView();
+			this.button1 = new System.Windows.Forms.Button();
 			this.noteFormatMenu.SuspendLayout();
 			this.contextMenuStrip1.SuspendLayout();
 			this.SuspendLayout();
@@ -83,7 +85,9 @@ namespace TextEditor.Editors
             this.btnBoldText,
             this.btnItalicText,
             this.btnUnderlineText,
-            this.btnStrikethroughText});
+            this.btnStrikethroughText,
+            this.toolStripSeparator2,
+            this.deleteCurrentNote});
 			this.noteFormatMenu.Location = new System.Drawing.Point(317, 0);
 			this.noteFormatMenu.Name = "noteFormatMenu";
 			this.noteFormatMenu.Size = new System.Drawing.Size(460, 25);
@@ -242,6 +246,24 @@ namespace TextEditor.Editors
 			this.btnStrikethroughText.ToolTipText = "Underline Text";
 			this.btnStrikethroughText.Click += new System.EventHandler(this.btnStrikethroughText_Click);
 			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+			this.toolStripSeparator2.Visible = false;
+			// 
+			// deleteCurrentNote
+			// 
+			this.deleteCurrentNote.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.deleteCurrentNote.Enabled = false;
+			this.deleteCurrentNote.Image = ((System.Drawing.Image)(resources.GetObject("deleteCurrentNote.Image")));
+			this.deleteCurrentNote.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.deleteCurrentNote.Name = "deleteCurrentNote";
+			this.deleteCurrentNote.Size = new System.Drawing.Size(97, 22);
+			this.deleteCurrentNote.Text = "Delete This Note";
+			this.deleteCurrentNote.Visible = false;
+			this.deleteCurrentNote.Click += new System.EventHandler(this.deleteCurrentNote_Click);
+			// 
 			// editor
 			// 
 			this.editor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -250,29 +272,16 @@ namespace TextEditor.Editors
 			this.editor.Enabled = false;
 			this.editor.Location = new System.Drawing.Point(317, 25);
 			this.editor.Name = "editor";
-			this.editor.Size = new System.Drawing.Size(460, 473);
+			this.editor.Size = new System.Drawing.Size(460, 443);
 			this.editor.TabIndex = 2;
 			this.editor.Text = "";
-			// 
-			// notes
-			// 
-			this.notes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-			this.notes.ContextMenuStrip = this.contextMenuStrip1;
-			this.notes.FormattingEnabled = true;
-			this.notes.Location = new System.Drawing.Point(0, 0);
-			this.notes.Name = "notes";
-			this.notes.Size = new System.Drawing.Size(317, 498);
-			this.notes.TabIndex = 3;
-			this.notes.SelectedIndexChanged += new System.EventHandler(this.notes_SelectedIndexChanged);
 			// 
 			// contextMenuStrip1
 			// 
 			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuNewNote,
-            this.btnDeleteSelectedNote});
+            this.menuNewNote});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(184, 48);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(128, 26);
 			// 
 			// menuNewNote
 			// 
@@ -280,11 +289,12 @@ namespace TextEditor.Editors
             this.txtNoteTitle,
             this.btnCreateNewNote});
 			this.menuNewNote.Name = "menuNewNote";
-			this.menuNewNote.Size = new System.Drawing.Size(183, 22);
+			this.menuNewNote.Size = new System.Drawing.Size(127, 22);
 			this.menuNewNote.Text = "New Note";
 			// 
 			// txtNoteTitle
 			// 
+			this.txtNoteTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.txtNoteTitle.Name = "txtNoteTitle";
 			this.txtNoteTitle.Size = new System.Drawing.Size(100, 23);
 			// 
@@ -295,12 +305,29 @@ namespace TextEditor.Editors
 			this.btnCreateNewNote.Text = "Create New Note";
 			this.btnCreateNewNote.Click += new System.EventHandler(this.btnCreateNewNote_Click);
 			// 
-			// btnDeleteSelectedNote
+			// notes
 			// 
-			this.btnDeleteSelectedNote.Name = "btnDeleteSelectedNote";
-			this.btnDeleteSelectedNote.Size = new System.Drawing.Size(183, 22);
-			this.btnDeleteSelectedNote.Text = "Delete Selected Note";
-			this.btnDeleteSelectedNote.Click += new System.EventHandler(this.btnDeleteSelectedNote_Click);
+			this.notes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+			this.notes.ContextMenuStrip = this.contextMenuStrip1;
+			this.notes.Location = new System.Drawing.Point(0, 0);
+			this.notes.Name = "notes";
+			this.notes.Size = new System.Drawing.Size(317, 468);
+			this.notes.TabIndex = 3;
+			this.notes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.notes_KeyPress);
+			// 
+			// button1
+			// 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button1.Font = new System.Drawing.Font("Segoe UI", 10F);
+			this.button1.Location = new System.Drawing.Point(0, 468);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(777, 30);
+			this.button1.TabIndex = 4;
+			this.button1.Text = "How To Use (IMPORTANT TO KNOW FOR FIRST-TIME-USE)";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
 			// 
 			// Notepad
 			// 
@@ -308,9 +335,10 @@ namespace TextEditor.Editors
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Window;
 			this.ClientSize = new System.Drawing.Size(777, 498);
+			this.Controls.Add(this.button1);
+			this.Controls.Add(this.notes);
 			this.Controls.Add(this.editor);
 			this.Controls.Add(this.noteFormatMenu);
-			this.Controls.Add(this.notes);
 			this.DoubleBuffered = true;
 			this.Name = "Notepad";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -328,12 +356,10 @@ namespace TextEditor.Editors
 		private System.Windows.Forms.ToolStrip noteFormatMenu;
 		private System.Windows.Forms.ToolStripButton toolStripButton1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ListBox notes;
 		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem menuNewNote;
 		private System.Windows.Forms.ToolStripTextBox txtNoteTitle;
 		private System.Windows.Forms.ToolStripMenuItem btnCreateNewNote;
-		private System.Windows.Forms.ToolStripMenuItem btnDeleteSelectedNote;
 		private System.Windows.Forms.ToolStripButton btnNewNote;
 		private System.Windows.Forms.ToolStripButton btnCutText;
 		private System.Windows.Forms.ToolStripButton btnCopyText;
@@ -349,5 +375,9 @@ namespace TextEditor.Editors
 		private System.Windows.Forms.ToolStripButton btnSaveNote;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
 		public System.Windows.Forms.RichTextBox editor;
+		private System.Windows.Forms.TreeView notes;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripButton deleteCurrentNote;
+		private System.Windows.Forms.Button button1;
 	}
 }

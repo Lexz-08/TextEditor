@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("TextEditor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("An advanced text editing program for text editing, code editing, and also taking notes!")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("TextEditor")]
@@ -32,4 +32,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("0.2.*")]
-[assembly: AssemblyFileVersion("0.0.2.1")]
+[assembly: AssemblyFileVersion("0.0.3.*")]
