@@ -1,4 +1,5 @@
-﻿using ICSharpCode.TextEditor.Document;
+﻿using AMS.Profile;
+using ICSharpCode.TextEditor.Document;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -54,9 +55,43 @@ namespace TextEditor.Editors
 			t.Start();
 
 			advancedTextEditor.Font = new Font("Roboto", 10f);
+
+			ini = new Ini(ConfigFile.Path);
+			LoadSettings();
 		}
 
+		private Ini ini;
 		private EditorSelectionWindow selectionWindow;
+		private const string te = "TextEditor";
+
+		private void SaveSettings()
+		{
+			// now to save the settings if the user changed them
+			ini.SetValue(te, "HRuler", editor_HRuler.ToString().ToLower());
+			ini.SetValue(te, "VisibleSpacesTabs", editor_VisibleSpacesTabs.ToString().ToLower());
+			ini.SetValue(te, "ShowCurrentLine", editor_ShowCurrentLine.ToString().ToLower());
+			ini.SetValue(te, "FontName", advancedTextEditor.Font.Name);
+			ini.SetValue(te, "FontSize", advancedTextEditor.Font.Size.ToString());
+			ini.SetValue(te, "ShowMenuItemsChecked", showMenuItemChecked.ToString().ToLower());
+		}
+		private void LoadSettings()
+		{
+			// now to load all of the settings for the text editor
+			editor_HRuler = Convert.ToBoolean(ini.GetValue(te, "HRuler"));
+			editor_VisibleSpacesTabs = Convert.ToBoolean(ini.GetValue(te, "VisibleSpacesTabs"));
+			editor_ShowCurrentLine = Convert.ToBoolean(ini.GetValue(te, "ShowCurrentLine"));
+			advancedTextEditor.Font = new Font(
+				ini.GetValue(te, "FontName").ToString(),
+				Convert.ToSingle(ini.GetValue(te, "FontSize").ToString())
+				);
+			showMenuItemChecked = Convert.ToBoolean(ini.GetValue(te, "ShowMenuItemsChecked"));
+
+			advancedTextEditor.ShowHRuler = editor_HRuler;
+			advancedTextEditor.ShowSpaces = editor_VisibleSpacesTabs;
+			advancedTextEditor.ShowTabs = editor_VisibleSpacesTabs;
+			advancedTextEditor.LineViewerStyle = editor_ShowCurrentLine ? LineViewerStyle.FullRow : LineViewerStyle.None;
+			btnShowMnuItmChecked.Text = "Show Menu Items Checked: " + (showMenuItemChecked ? "ON" : "OFF");
+		}
 
 		private void TextEditor_FormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -285,10 +320,14 @@ namespace TextEditor.Editors
 		private void editorFontSize_Click(object sender, EventArgs e)
 		{
 			new FontSizeEditor(null, advancedTextEditor, null).ShowDialog();
+
+			SaveSettings();
 		}
 		private void editorFontFamily_Click(object sender, EventArgs e)
 		{
 			new FontNameEditor(null, advancedTextEditor, null).ShowDialog();
+
+			SaveSettings();
 		}
 
 		// format menu -> advanced editor
@@ -296,6 +335,8 @@ namespace TextEditor.Editors
 		{
 			editor_HRuler = !editor_HRuler;
 			advancedTextEditor.ShowHRuler = editor_HRuler;
+
+			SaveSettings();
 		}
 
 		private void editorVisibleSpacesTabs_Click(object sender, EventArgs e)
@@ -303,6 +344,8 @@ namespace TextEditor.Editors
 			editor_VisibleSpacesTabs = !editor_VisibleSpacesTabs;
 			advancedTextEditor.ShowTabs = editor_VisibleSpacesTabs;
 			advancedTextEditor.ShowSpaces = editor_VisibleSpacesTabs;
+
+			SaveSettings();
 		}
 		private void editorShowCurrentLine_Click(object sender, EventArgs e)
 		{
@@ -311,6 +354,8 @@ namespace TextEditor.Editors
 			if (editor_ShowCurrentLine)
 				advancedTextEditor.LineViewerStyle = LineViewerStyle.FullRow;
 			else advancedTextEditor.LineViewerStyle = LineViewerStyle.None;
+
+			SaveSettings();
 		}
 
 		// menu button without children on dropdown
@@ -329,6 +374,8 @@ namespace TextEditor.Editors
 					btnShowMnuItmChecked.Text = "Show Menu Items Checked: ON";
 					break;
 			}
+
+			SaveSettings();
 		}
 	}
 }

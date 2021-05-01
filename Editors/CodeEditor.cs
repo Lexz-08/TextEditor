@@ -1,6 +1,9 @@
-﻿using FastColoredTextBoxNS;
+﻿using AMS.Profile;
+using FastColoredTextBoxNS;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using TextEditor.Properties;
@@ -63,9 +66,39 @@ namespace TextEditor.Editors
 			t.Start();
 
 			Icon = Resources.codeIcon;
+
+			ini = new Ini(ConfigFile.Path);
+			LoadSettings();
 		}
 
+		private Ini ini;
 		private EditorSelectionWindow selectionWindow;
+		private const string ce = "CodeEditor";
+
+		private void SaveSettings()
+		{
+			// now to save the settings if the user changed them
+			ini.SetValue(ce, "WordWrap", editor_WordWrap.ToString().ToLower());
+			ini.SetValue(ce, "CurrentLanguage", advancedEditor.Language.ToString());
+			ini.SetValue(ce, "FontName", advancedEditor.Font.Name);
+			ini.SetValue(ce, "FontSize", advancedEditor.Font.Size.ToString());
+			ini.SetValue(ce, "ShowMenuItemsChecked", showMenuItemsChecked.ToString().ToLower());
+		}
+		private void LoadSettings()
+		{
+			// now to load all of the settings for the code editor
+			editor_WordWrap = Convert.ToBoolean(ini.GetValue(ce, "WordWrap"));
+			advancedEditor.Language = (Language)TypeDescriptor.GetConverter(typeof(Language))
+				.ConvertFromString(ini.GetValue(ce, "CurrentLanguage").ToString());
+			advancedEditor.Font = new Font(
+				ini.GetValue(ce, "FontName").ToString(),
+				Convert.ToSingle(ini.GetValue(ce, "FontSize").ToString())
+				);
+			showMenuItemsChecked = Convert.ToBoolean(ini.GetValue(ce, "ShowMenuItemsChecked").ToString());
+
+			advancedEditor.WordWrap = editor_WordWrap;
+			btnShowMnuItmChecked.Text = "Show Menu Items Checked: " + (showMenuItemsChecked ? "ON" : "OFF");
+		}
 
 		private void CodeEditor_FormClosed(object sender, FormClosedEventArgs e)
 		{
@@ -314,10 +347,14 @@ namespace TextEditor.Editors
 		private void editorFontSize_Click(object sender, EventArgs e)
 		{
 			new FontSizeEditor(null, null, advancedEditor).ShowDialog();
+
+			SaveSettings();
 		}
 		private void editorFontFamily_Click(object sender, EventArgs e)
 		{
 			new FontNameEditor(null, null, advancedEditor).ShowDialog();
+
+			SaveSettings();
 		}
 
 		// format menu
@@ -325,6 +362,8 @@ namespace TextEditor.Editors
 		{
 			editor_WordWrap = !editor_WordWrap;
 			advancedEditor.WordWrap = editor_WordWrap;
+
+			SaveSettings();
 		}
 
 		// menu button without children on dropdown
@@ -343,6 +382,8 @@ namespace TextEditor.Editors
 					showMenuItemsChecked = true;
 					break;
 			}
+
+			SaveSettings();
 		}
 
 		// menu at bottom of window
@@ -361,6 +402,8 @@ namespace TextEditor.Editors
 			lang_Lua = false;
 
 			advancedEditor.Language = Language.Custom;
+
+			SaveSettings();
 		}
 		private void btnlangCSharp_Click(object sender, EventArgs e)
 		{
@@ -377,6 +420,8 @@ namespace TextEditor.Editors
 			lang_Lua = false;
 
 			advancedEditor.Language = Language.CSharp;
+
+			SaveSettings();
 		}
 		private void btnlangVisualBasic_Click(object sender, EventArgs e)
 		{
@@ -393,6 +438,8 @@ namespace TextEditor.Editors
 			lang_Lua = false;
 
 			advancedEditor.Language = Language.VB;
+
+			SaveSettings();
 		}
 		private void btnlangHTML_Click(object sender, EventArgs e)
 		{
@@ -409,6 +456,8 @@ namespace TextEditor.Editors
 			lang_Lua = false;
 
 			advancedEditor.Language = Language.HTML;
+
+			SaveSettings();
 		}
 		private void btnlangXML_Click(object sender, EventArgs e)
 		{
@@ -425,6 +474,8 @@ namespace TextEditor.Editors
 			lang_Lua = false;
 
 			advancedEditor.Language = Language.XML;
+
+			SaveSettings();
 		}
 		private void btnlangSQL_Click(object sender, EventArgs e)
 		{
@@ -441,6 +492,8 @@ namespace TextEditor.Editors
 			lang_Lua = false;
 
 			advancedEditor.Language = Language.SQL;
+
+			SaveSettings();
 		}
 		private void btnlangPHP_Click(object sender, EventArgs e)
 		{
@@ -457,6 +510,8 @@ namespace TextEditor.Editors
 			lang_Lua = false;
 
 			advancedEditor.Language = Language.PHP;
+
+			SaveSettings();
 		}
 		private void btnlangJS_Click(object sender, EventArgs e)
 		{
@@ -473,6 +528,8 @@ namespace TextEditor.Editors
 			lang_Lua = false;
 
 			advancedEditor.Language = Language.JS;
+
+			SaveSettings();
 		}
 		private void btnlangLua_Click(object sender, EventArgs e)
 		{
@@ -489,6 +546,8 @@ namespace TextEditor.Editors
 			lang_Lua = true;
 
 			advancedEditor.Language = Language.Lua;
+
+			SaveSettings();
 		}
 	}
 }
