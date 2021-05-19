@@ -1,5 +1,6 @@
 ![](https://img.shields.io/badge/version-0.3-yellow)
 ![](https://img.shields.io/badge/release-stable-informational)
+![](https://img.shields.io/badge/status-idle-orange)
 
 ## TextEditor
 ### Description
@@ -9,5 +10,3 @@ Unofficially the most advanced text/code editing application/program I have ever
   - Text Editor
   - Code Editor
   - Notepad
-
-![](https://img.shields.io/badge/status-idle-orange)
