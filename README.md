@@ -10,7 +10,4 @@ Unofficially the most advanced text/code editing application/program I have ever
   - Code Editor
   - Notepad
 
-### Features Coming Soon
-  - I'm currently not working on the application right now.
-
-### [Image To Represent Nothing Being Worked On](https://static.wikia.nocookie.net/black-magic-ii/images/f/f7/Void_Energy.png/revision/latest/scale-to-width-down/500?cb=20200703162900)
+![](https://img.shields.io/badge/status-idle-orange)
