@@ -1,6 +1,6 @@
 [![](https://img.shields.io/badge/version-0.3-yellow)](#)
 [![](https://img.shields.io/badge/release-stable-informational)](#)
-[![](https://img.shields.io/badge/status-idle-orange)](#)
+[![](https://img.shields.io/badge/status-working-green)](#)
 
 ## TextEditor
 ### Description
@@ -10,3 +10,7 @@ Unofficially the most advanced text/code editing application/program I have ever
   - Text Editor
   - Code Editor
   - Notepad
+
+### Coming Soon
+  - Application Updater
+    - So that you no longer have to download it directly from GitHub.
