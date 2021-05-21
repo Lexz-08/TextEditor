@@ -38,6 +38,7 @@ namespace TextEditor
 			this.useTextEditor = new System.Windows.Forms.PictureBox();
 			this.closeWindowSelection = new System.Windows.Forms.Label();
 			this.helpInfo = new System.Windows.Forms.ToolTip(this.components);
+			this.checkForUpdates = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.useNotepad)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.useCodeEditor)).BeginInit();
@@ -120,7 +121,7 @@ namespace TextEditor
 			this.closeWindowSelection.AutoSize = true;
 			this.closeWindowSelection.Font = new System.Drawing.Font("Roboto", 14F);
 			this.closeWindowSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-			this.closeWindowSelection.Location = new System.Drawing.Point(232, 194);
+			this.closeWindowSelection.Location = new System.Drawing.Point(232, 240);
 			this.closeWindowSelection.Name = "closeWindowSelection";
 			this.closeWindowSelection.Size = new System.Drawing.Size(81, 23);
 			this.closeWindowSelection.TabIndex = 2;
@@ -130,10 +131,26 @@ namespace TextEditor
 			this.closeWindowSelection.MouseEnter += new System.EventHandler(this.closeWindowSelection_MouseEnter);
 			this.closeWindowSelection.MouseLeave += new System.EventHandler(this.closeWindowSelection_MouseLeave);
 			// 
+			// checkForUpdates
+			// 
+			this.checkForUpdates.AutoSize = true;
+			this.checkForUpdates.Font = new System.Drawing.Font("Roboto", 14F);
+			this.checkForUpdates.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(70)))));
+			this.checkForUpdates.Location = new System.Drawing.Point(187, 200);
+			this.checkForUpdates.Name = "checkForUpdates";
+			this.checkForUpdates.Size = new System.Drawing.Size(170, 23);
+			this.checkForUpdates.TabIndex = 3;
+			this.checkForUpdates.Text = "Check For Updates";
+			this.helpInfo.SetToolTip(this.checkForUpdates, "Checks for any updates or changes to the application.");
+			this.checkForUpdates.Click += new System.EventHandler(this.checkForUpdates_Click);
+			this.checkForUpdates.MouseEnter += new System.EventHandler(this.checkForUpdates_MouseEnter);
+			this.checkForUpdates.MouseLeave += new System.EventHandler(this.checkForUpdates_MouseLeave);
+			// 
 			// EditorSelectionWindow
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-			this.ClientSize = new System.Drawing.Size(544, 235);
+			this.ClientSize = new System.Drawing.Size(544, 277);
+			this.Controls.Add(this.checkForUpdates);
 			this.Controls.Add(this.closeWindowSelection);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Controls.Add(this.windowTitle);
@@ -163,6 +180,7 @@ namespace TextEditor
 		private System.Windows.Forms.PictureBox useTextEditor;
 		private System.Windows.Forms.Label closeWindowSelection;
 		private System.Windows.Forms.ToolTip helpInfo;
+		private System.Windows.Forms.Label checkForUpdates;
 	}
 }
 
