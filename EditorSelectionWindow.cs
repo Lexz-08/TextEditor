@@ -115,7 +115,7 @@ namespace TextEditor
 
 					if (question == DialogResult.Yes)
 					{
-						MessageBox.Show(webClient.DownloadString("https://pastebin.com/raw/bXvC8dDZ"), "Update Information",
+						MessageBox.Show("Current Version: " + currentVersion + "\n\n" + webClient.DownloadString("https://pastebin.com/raw/bXvC8dDZ"), "Update Information",
 							MessageBoxButtons.OK, MessageBoxIcon.Information);
 						DownloadUpdate();
 					}
@@ -175,22 +175,22 @@ namespace TextEditor
 				{
 					if (sfd.ShowDialog() == DialogResult.OK)
 					{
-						webClient.DownloadFile("https://app-download.000webhostapp.com/Downloads/" + otherVersion.Substring(12, 3) + ".zip", sfd.FileName);
+						webClient.DownloadFile("https://app-download.000webhostapp.com/Downloads/" + otherVersion.Substring(12, 3) + "-OnlineUpdates.zip", sfd.FileName);
 						zipPath = sfd.FileName;
 					}
 				}
 
 				string userName = WindowsIdentity.GetCurrent().Name.Split('\\')[1];
 				string extractPath = "C:\\Users\\" + userName + "\\Desktop\\";
-				Directory.CreateDirectory(extractPath + "\\TextEditor " + otherVersion);
-				ZipFile.ExtractToDirectory(zipPath, extractPath + "\\TextEditor " + otherVersion);
+				Directory.CreateDirectory(extractPath + "\\TextEditor " + otherVersion + "-OnlineUpdates");
+				ZipFile.ExtractToDirectory(zipPath, extractPath + "\\TextEditor " + otherVersion + "-OnlineUpdates");
 
 				DialogResult question = MessageBox.Show("Run installer now or do it later on your own time?\n\n" +
 					"[Yes: Now] - [No: On My Own Time]", "Install Now or Later", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
 				if (question == DialogResult.Yes)
 				{
-					Process.Start(extractPath + "\\TextEditor " + otherVersion + "\\Install-TextEditor.exe");
+					Process.Start(extractPath + "\\TextEditor " + otherVersion + "-OnlineUpdates\\Install-TextEditor.exe");
 				}
 				else if (question == DialogResult.No)
 				{
