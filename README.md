@@ -1,6 +1,6 @@
 [![](https://img.shields.io/badge/version-0.3-yellow)](#)
 [![](https://img.shields.io/badge/release-stable-informational)](#)
-[![](https://img.shields.io/badge/status-working-green)](#)
+[![](https://img.shields.io/badge/status-idle-orange)](#)
 
 ## TextEditor
 ### Description
