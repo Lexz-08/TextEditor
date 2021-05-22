@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using TextEditor.Properties;
+using TextEditor.PropertyEditors;
 using Transitions;
 
 namespace TextEditor.Editors
@@ -240,6 +241,9 @@ namespace TextEditor.Editors
 
 				toolStripSeparator2.Visible = false;
 				deleteCurrentNote.Visible = false;
+
+				editor.Text = string.Empty;
+				editor.Enabled = false;
 			}
 		}
 
@@ -254,7 +258,18 @@ namespace TextEditor.Editors
 				"- Use 'Enter' or 'Return' on your keyboard to select a note to open it.\n\n" +
 				"- Use the 'Save Note' button to save your changes.\n\n" +
 				"- Creating a folder inside the 'Notes' folder will not allow you to access those notes in the new folder.\n\n" +
-				"- All notes are created and accessed in only the 'Notes' folder, any other folders added and containing other notes will render those new notes 'inaccessible'.", "How To Use the NOTEPAD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				"- All notes are created and accessed in only the 'Notes' folder, any other folders added and containing other notes will render those new notes 'inaccessible'.\n\n" +
+				"- You can click the 'A' to the far right to open another menu that will let you change the editor's font size or font family.\n\n" +
+				"Unfortunately I could not get the name/size editors for the Notepad to work on only certain text instead of the WHOLE editor, but I will try to fix it.", "How To Use the NOTEPAD", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		private void fontSize_Click(object sender, EventArgs e)
+		{
+			new FontSizeEditor(editor, null, null).ShowDialog();
+		}
+		private void fontFamily_Click(object sender, EventArgs e)
+		{
+			new FontNameEditor(editor, null, null).ShowDialog();
 		}
 	}
 }

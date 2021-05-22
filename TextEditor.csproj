@@ -103,6 +103,18 @@
     <Compile Include="PropertyEditors\FontSizeEditor.Designer.cs">
       <DependentUpon>FontSizeEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="PropertyEditors\RichText\RichFontNameEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyEditors\RichText\RichFontNameEditor.Designer.cs">
+      <DependentUpon>RichFontNameEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyEditors\RichText\RichFontSizeEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyEditors\RichText\RichFontSizeEditor.Designer.cs">
+      <DependentUpon>RichFontSizeEditor.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="EditorSelectionWindow.resx">
       <DependentUpon>EditorSelectionWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +142,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PropertyEditors\FontSizeEditor.resx">
       <DependentUpon>FontSizeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyEditors\RichText\RichFontNameEditor.resx">
+      <DependentUpon>RichFontNameEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PropertyEditors\RichText\RichFontSizeEditor.resx">
+      <DependentUpon>RichFontSizeEditor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

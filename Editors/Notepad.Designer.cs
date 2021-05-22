@@ -48,6 +48,10 @@ namespace TextEditor.Editors
 			this.btnItalicText = new System.Windows.Forms.ToolStripButton();
 			this.btnUnderlineText = new System.Windows.Forms.ToolStripButton();
 			this.btnStrikethroughText = new System.Windows.Forms.ToolStripButton();
+			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+			this.fontSize = new System.Windows.Forms.ToolStripMenuItem();
+			this.fontFamily = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.deleteCurrentNote = new System.Windows.Forms.ToolStripButton();
 			this.editor = new System.Windows.Forms.RichTextBox();
@@ -86,6 +90,8 @@ namespace TextEditor.Editors
             this.btnItalicText,
             this.btnUnderlineText,
             this.btnStrikethroughText,
+            this.toolStripSeparator6,
+            this.toolStripDropDownButton1,
             this.toolStripSeparator2,
             this.deleteCurrentNote});
 			this.noteFormatMenu.Location = new System.Drawing.Point(317, 0);
@@ -246,6 +252,38 @@ namespace TextEditor.Editors
 			this.btnStrikethroughText.ToolTipText = "Underline Text";
 			this.btnStrikethroughText.Click += new System.EventHandler(this.btnStrikethroughText_Click);
 			// 
+			// toolStripSeparator6
+			// 
+			this.toolStripSeparator6.Name = "toolStripSeparator6";
+			this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+			// 
+			// toolStripDropDownButton1
+			// 
+			this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fontSize,
+            this.fontFamily});
+			this.toolStripDropDownButton1.Image = global::TextEditor.Properties.Resources.boldText;
+			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+			this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
+			this.toolStripDropDownButton1.Text = "Font";
+			this.toolStripDropDownButton1.ToolTipText = "Font Menu";
+			// 
+			// fontSize
+			// 
+			this.fontSize.Name = "fontSize";
+			this.fontSize.Size = new System.Drawing.Size(180, 22);
+			this.fontSize.Text = "Size";
+			this.fontSize.Click += new System.EventHandler(this.fontSize_Click);
+			// 
+			// fontFamily
+			// 
+			this.fontFamily.Name = "fontFamily";
+			this.fontFamily.Size = new System.Drawing.Size(180, 22);
+			this.fontFamily.Text = "Family";
+			this.fontFamily.Click += new System.EventHandler(this.fontFamily_Click);
+			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -379,5 +417,9 @@ namespace TextEditor.Editors
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 		private System.Windows.Forms.ToolStripButton deleteCurrentNote;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+		private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+		private System.Windows.Forms.ToolStripMenuItem fontSize;
+		private System.Windows.Forms.ToolStripMenuItem fontFamily;
 	}
 }
