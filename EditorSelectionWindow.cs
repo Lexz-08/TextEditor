@@ -31,6 +31,7 @@ namespace TextEditor
 			CheckForUpdates(this);
 		}
 
+		#region Non-Update Stuff
 		private void closeWindowSelection_MouseEnter(object sender, EventArgs e)
 		{
 			Transition.run(closeWindowSelection, "ForeColor",
@@ -87,7 +88,8 @@ namespace TextEditor
 			closeWindowSelection.Text = "CLOSE";
 			closeWindowSelection.Location = new Point(239, 240);
 		}
-
+		#endregion
+		#region Update Stuff
 		private void checkForUpdates_Click(object sender, EventArgs e)
 		{
 			CheckForUpdates(sender);
@@ -153,7 +155,6 @@ namespace TextEditor
 				}
 			}
 		}
-
 		private void DownloadUpdate()
 		{
 			WebClient webClient = new WebClient();
@@ -212,5 +213,6 @@ namespace TextEditor
 		{
 			Transition.run(checkForUpdates, "ForeColor", Color.FromArgb(150, 150, 70), new TransitionType_Linear(100));
 		}
+		#endregion
 	}
 }
