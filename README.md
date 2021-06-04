@@ -11,9 +11,5 @@ Unofficially the most advanced text/code editing application/program I have ever
   - Code Editor
   - Notepad
 
-### Coming Soon
-  - Application Updater
-    - So that you no longer have to download it directly from GitHub.
-
-### New Website Out!
+### Website
 [App Download](https://app-download.000webhostapp.com/index.html)
